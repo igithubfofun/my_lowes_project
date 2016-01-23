@@ -17,4 +17,25 @@ router.get('/my_projects', function(req, res){
   });
 });
 
+/* New User form */
+router.get('/register', function(req, res){
+	res.render('register')
+});
+
+router.post('/new_user', function(req,res,next){
+	var email = req.body.email;
+	var password1 = req.body.password1;
+	var password2 = req.body.password2;
+	var phone = req.body.phone;
+	var zipCode = req.body.zipCode;
+	var address1 = req.body.address1;
+	var address2 = req.body.address2;
+	var state = req.body.state;
+	var firstName = req.body.firstName;
+	var lastName = req.body.lastName;
+	User.collection.insert({email: email, password1: password1, password2: password2, phone: phone, zipCode: zipCode, address1: address1, address2: address2, state: state, firstName: firstName, lastName: lastName});
+		res.redirect('/');
+});
+
 module.exports = router;
+
