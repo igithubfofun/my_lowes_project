@@ -21,6 +21,7 @@ body {
 	font-size: 12px;
 	float: right;
 	margin-right: 5%;
+  font-size: 8px;
 }
 
 
@@ -60,11 +61,14 @@ img.img-rounded {
   background: rgb(0,0,0);
   z-index: 99;
   cursor: pointer;
+
 }
 
 .responsive-menu{
   display: none;
   cursor: pointer;
+  width:100px;
+
 }
 
 .responsive-menu:hover{
@@ -81,4 +85,12 @@ img.img-rounded {
 
 .main {
   margin-top: 50px;
+}
+
+.position_right {
+  position: absolute;
+  left: -55px;
+  top: 20px;
+  text-align: right;
+
 }
