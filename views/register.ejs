@@ -3,9 +3,8 @@
 		<div class="registration">
 		  <h2 class="registration_title">Registration Form</h2>
 		  <br>
-		  <p><%= fail %></p>
-		  <form class="registration_form" name="registration_form" action="/new_user" method="POST">
-		     <input type="email" name="email" placeholder="E-mail">
+		  <form class="registration_form" name="registration_form">
+		     <input id="email" type="email" name="email" placeholder="E-mail">
 		     <br><br>
 		     <div class="fieldWrapper">
             <label for="password1">Password:</label>
@@ -22,18 +21,18 @@
 		     <span id="message" class="message"></span> -->
 		     <br><br>
 		     <label for="phone">Phone Number (Format: 5554447777)</label>
-		     <input type='tel' pattern='\d{10}' name='phone' title='Phone Number (Format: 5554447777)'>
+		     <input id='phone' type='tel' pattern='\d{10}' name='phone' title='Phone Number (Format: 5554447777)'>
 		     <!-- <input type="tel" name="phone" placeholder="Phone number"> -->
 		     <br><br>
 		     <!-- <input type="number" name="zipCode" placeholder="Zip Code"> -->
-		     <input type='number' pattern='\d{5}' name='zipCode' placeholder="Zip Code">
+		     <input id='zipCode' type='number' pattern='\d{5}' name='zipCode' placeholder="Zip Code">
 		     <br><br>
-		     <input type="text" name="address1" placeholder="Address 1">
+		     <input id="address1" type="text" name="address1" placeholder="Address 1">
 		     <br><br>
-		     <input type="text" name="address2" placeholder="Address 2">
+		     <input id="address2" type="text" name="address2" placeholder="Address 2">
 		     <br><br>
 		     <!-- <input type="text" name="state" placeholder="State"> -->
-		     <select name="state">
+		     <select id="state" name="state">
 						<option value="AL" selected="selected">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -88,9 +87,9 @@
 					</select>
 
 		     <br><br>
-		     <input type="text" name="firstName" placeholder="First Name">
+		     <input id="firstName" type="text" name="firstName" placeholder="First Name">
 		     <br><br>
-		     <input type="text" name="lastName" placeholder="Last Name">
+		     <input id="lastName" type="text" name="lastName" placeholder="Last Name">
 		     <br><br>
 		     <nav class="navbar navbar-default navbar-fixed-bottom">
 		        <div class="footbox">
@@ -129,7 +128,53 @@
         message.innerHTML = "Passwords Do Not Match!"
     }
 }  
+
+	$('.registration_form').on('submit', function(){
+	  var email = $('#email').val();
+		var password1 = $('#password1').val();
+		var password2 = $('#password2').val();
+		var phone = $('#phone').val();
+		var zipCode = $('#zipCode').val();
+		var address1 = $('#address1').val();
+		var address2 = $('#address2').val();
+		var state = $('#state').val();
+		var firstName = $('#firstName').val();
+		var lastName = $('#lastName').val();
+		// console.log(email);
+	  $.ajax({
+	        url: "http://api.lowes.com/customer/registration?api_key=<%= key %>",
+	        headers: {
+	        	'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
+	        },
+	        dataType: "jsonp",
+	        method: "POST",
+	        data: {
+	          phoneUS: phone,
+				    password1: password1,
+				    password2: password2, 
+				    email1: email,
+				    zipCode: zipCode,
+				    firstName: firstName, 
+				    lastName: lastName,
+				    state: state,  
+				    address1: address1, 
+				    address2: address2 
+	          },
+	        success: function(data, textStatus, jqXHR){
+	          console.log('success on hitting route');
+	          // console.log(url);
+	          console.log(data);
+	          
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){
+	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+	        }
+	  });
+	      return false;
+	});
  	</script>
+<% include ./partials/footer %>
+
 
 
 <% include ./partials/footer %>

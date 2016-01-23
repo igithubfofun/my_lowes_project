@@ -20,7 +20,9 @@ router.get('/my_projects', function(req, res){
 
 /* New User form */
 router.get('/register', function(req, res){
-	res.render('register', {fail: ""});
+  var key = process.env.LOWES_API_KEY;
+  var url = "http://api.lowes.com/customer/registration?api_key="+key;
+	res.render('register', {fail: "hi", key: key});
 });
 
 router.post('/new_user', function(req,res,next){
@@ -47,6 +49,33 @@ router.post('/new_user', function(req,res,next){
     firstName: firstName, 
     lastName: lastName
   });
+
+var lowes_user = {
+    phoneUS: phone,
+    password1: password1,
+    password2: password2, 
+    email1: email,
+    zipCode: zipCode,
+    firstName: firstName, 
+    lastName: lastName,
+    state: state,  
+    address1: address1, 
+    address2: address2   
+  };
+var key = process.env.LOWES_API_KEY;
+var url = "http://api.lowes.com/customer/registration?api_key="+key;
+// $.ajax({
+//   url: url,
+//   dataType: "json",
+//   method: "POST",
+//   data: lowes_user,
+//   success: function(data, textStatus, jqXHR){
+//     res.json(data);
+//   },
+//   error: function(XMLHttpRequest, textStatus, errorThrown){
+//       alert("Status: " + textStatus); alert("Error: " + errorThrown);
+//   }
+// });
 
   new_user.save(function(err) {
     if (err) {
