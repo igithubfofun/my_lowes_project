@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
+git var mongoose = require('mongoose');
 
 var projectSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  materials: Array,
-  steps: Array,
+  userId: { type: String, required: true },
+  album: Array,
+  category: String,
   created_at: Date,
   updated_at: Date
 });
