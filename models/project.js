@@ -1,4 +1,4 @@
-git var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var projectSchema = new mongoose.Schema({
   userId: { type: String, required: true },
