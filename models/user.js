@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -13,6 +14,28 @@ var userSchema = new mongoose.Schema({
   state: { type: String},
   created_at: Date,
   updated_at: Date
+});
+
+userSchema.pre('save', function(next) {
+  var user = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified('password1')) return next();
+
+  // generate a salt
+  bcrypt.genSalt(10, function(err, salt) {
+    if (err) return next(err);
+
+    // hash the password along with our new salt
+    bcrypt.hash(user.password1, salt, function(err, hash) {
+      if (err) return next(err);
+
+      // override the cleartext password with the hashed one
+      user.password1 = hash;
+      user.password2 = hash;
+      next();
+    });
+  });
 });
 
 var User = mongoose.model('User', userSchema);

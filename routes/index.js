@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcrypt');
 var User = require('../models/user');
 var Project = require('../models/project')
 var mongoose = require('mongoose');
@@ -34,7 +35,7 @@ router.get('/login', function(req, res){
 
 /* New User form */
 router.get('/register', function(req, res){
-	res.render('register')
+	res.render('register', {fail: ""});
 });
 
 router.post('/new_user', function(req,res,next){
@@ -48,8 +49,28 @@ router.post('/new_user', function(req,res,next){
 	var state = req.body.state;
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
-	User.collection.insert({email: email, password1: password1, password2: password2, phone: phone, zipCode: zipCode, address1: address1, address2: address2, state: state, firstName: firstName, lastName: lastName});
-		res.redirect('/');
+
+	var new_user = new User({
+    email: email,
+    password1: password1,
+    password2: password2, 
+    phone: phone, 
+    zipCode: zipCode, 
+    address1: address1, 
+    address2: address2, 
+    state: state, 
+    firstName: firstName, 
+    lastName: lastName
+  });
+
+  new_user.save(function(err) {
+    if (err) {
+      res.redirect('/register', {fail: err, email: email});
+    } else {
+      console.log('User saved successfully');
+      res.redirect('/');
+    }
+  }); 
 });
 
 module.exports = router;
