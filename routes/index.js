@@ -17,6 +17,21 @@ router.get('/my_projects', function(req, res){
   });
 });
 
+// Login Form
+router.get('/login', function(req, res){
+	res.render('login')
+});
+
+// router.post('/login', function(req, res){
+// 	var logonID = req.body.email;
+// 	var logonPassword = req.body.password1;
+
+
+// 	console.log("request sent " + logonID + '' + logonPassword)
+// 	res.json;
+// });	
+
+
 /* New User form */
 router.get('/register', function(req, res){
 	res.render('register')
