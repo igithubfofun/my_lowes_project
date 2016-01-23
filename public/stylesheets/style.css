@@ -1,15 +1,15 @@
 @media only screen and (max-width: 1334px)
 @media only screen and (min-width: 750px)
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/*.navbar {
-	background-color: black;
-	height: 84px;
-}*/
 
 .nav_header {
 	text-align: center;
@@ -77,4 +77,8 @@ img.img-rounded {
 
 .empty_space {
   cursor: pointer;
+}
+
+.main {
+  margin-top: 50px;
 }
