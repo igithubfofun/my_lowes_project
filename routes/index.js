@@ -4,6 +4,8 @@ var bcrypt = require('bcrypt');
 var User = require('../models/user');
 var Project = require('../models/project')
 var mongoose = require('mongoose');
+var request = require('request');
+
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -56,14 +58,28 @@ var lowes_user = {
     password2: password2, 
     email1: email,
     zipCode: zipCode,
+    storeNumber: "",
     firstName: firstName, 
     lastName: lastName,
+    activityGuid: "",
+    myLowesCardNumber: "",
+    city: "Austin",
     state: state,  
     address1: address1, 
-    address2: address2   
+    address2: address2,
+    subscriptions: ""  
   };
 var key = process.env.LOWES_API_KEY;
-var url = "http://api.lowes.com/customer/registration?api_key="+key;
+var url = 'http://api.lowes.com/customer/registration?api_key='+key;
+
+// request({
+//     url: url,
+//     method: "POST",
+//     json: true,   // <--Very important!!!
+//     body: lowes_user
+// }, function (error, response, body){
+//     console.log(response);
+// });
 // $.ajax({
 //   url: url,
 //   dataType: "json",
@@ -79,9 +95,22 @@ var url = "http://api.lowes.com/customer/registration?api_key="+key;
 
   new_user.save(function(err) {
     if (err) {
-      res.redirect('/register', {fail: err, email: email});
+      res.redirect('/register', {fail: err});
     } else {
       console.log('User saved successfully');
+      request({
+          url: url,
+          method: "POST",
+          headers: {
+            'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
+          },
+          json: true,   // <--Very important!!!
+          body: lowes_user
+      }, function (error, response, body){
+          console.log('body: ',body);
+          console.log('response: ',response);
+          console.log('error: ',error);
+      });
       res.redirect('/');
     }
   }); 

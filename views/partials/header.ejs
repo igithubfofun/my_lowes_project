@@ -3,29 +3,41 @@
    <head>
       <title>My Lowes Project</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel='stylesheet' href='stylesheets/normalize.css'/>
+      <link rel="stylesheet" href="stylesheets/normalize.css"/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
       <link rel='stylesheet' href='stylesheets/style.css'/>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
    </head>
    <body>
 
-      <nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-default navbar-fixed-top ">
          <div class="container-fluid">
-            <div class="row">
+            <div class="row header">
                <div class="nav_header col-xs-9 col-xs-offset-1">
-               	<a href="/my_projects">My Lowes Project</a>
+                   <div class="container">
+                   <img src="/images/lowesNoTagline.jpg" class="img-rounded img-responsive logo">
+                   </div>
                </div>
                <div class="navbox col-xs-2">
-                  <a class="navlink" href="/register">Register</a>
-                  <br>
-                  <a class="navlink" href="/login">Login</a>
-                  <br>
-                  <a class="navlink" href="/my_projects">My Projects</a>
-                  <br>
-                  <a class="navlink" href="/scanner">Product Scan</a>
-                  <br>
-                  <a class="navlink" href="/projects_list">My Projects</a>
+
+               <div class="mobile-nav">
+               <div class="menu-btn empty_space" id="menu-btn">
+               <div></div>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+
+                     </div>
+                           <div class="responsive-menu">
+                              <ul>
+                                 <a class="navlink" href="/register">Register</a><br>
+                                 <a class="navlink" href="/login">Login</a><br>
+                                 <a class="navlink" href="/my_projects">My Projects</a><br>
+                                 <a class="navlink" href="/scanner">Product Scan</a><br>
+                              </ul>
+                           </div>
+                     </div>
+
                </div>
             </div>
          </div>

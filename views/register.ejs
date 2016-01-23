@@ -3,7 +3,7 @@
 		<div class="registration">
 		  <h2 class="registration_title">Registration Form</h2>
 		  <br>
-		  <form class="registration_form" name="registration_form">
+		  <form class="registration_form" name="registration_form" action="/new_user" method="POST">
 		     <input id="email" type="email" name="email" placeholder="E-mail">
 		     <br><br>
 		     <div class="fieldWrapper">
@@ -129,52 +129,49 @@
     }
 }  
 
-	$('.registration_form').on('submit', function(){
-	  var email = $('#email').val();
-		var password1 = $('#password1').val();
-		var password2 = $('#password2').val();
-		var phone = $('#phone').val();
-		var zipCode = $('#zipCode').val();
-		var address1 = $('#address1').val();
-		var address2 = $('#address2').val();
-		var state = $('#state').val();
-		var firstName = $('#firstName').val();
-		var lastName = $('#lastName').val();
-		// console.log(email);
-	  $.ajax({
-	        url: "http://api.lowes.com/customer/registration?api_key=<%= key %>",
-	        headers: {
-	        	'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
-	        },
-	        dataType: "jsonp",
-	        method: "POST",
-	        data: {
-	          phoneUS: phone,
-				    password1: password1,
-				    password2: password2, 
-				    email1: email,
-				    zipCode: zipCode,
-				    firstName: firstName, 
-				    lastName: lastName,
-				    state: state,  
-				    address1: address1, 
-				    address2: address2 
-	          },
-	        success: function(data, textStatus, jqXHR){
-	          console.log('success on hitting route');
-	          // console.log(url);
-	          console.log(data);
+	// $('.registration_form').on('submit', function(){
+	//   var email = $('#email').val();
+	// 	var password1 = $('#password1').val();
+	// 	var password2 = $('#password2').val();
+	// 	var phone = $('#phone').val();
+	// 	var zipCode = $('#zipCode').val();
+	// 	var address1 = $('#address1').val();
+	// 	var address2 = $('#address2').val();
+	// 	var state = $('#state').val();
+	// 	var firstName = $('#firstName').val();
+	// 	var lastName = $('#lastName').val();
+	// 	// console.log(email);
+	//   $.ajax({
+	//         url: "http://api.lowes.com/customer/registration?api_key=<%= key %>",
+	//         headers: {
+	//         	'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
+	//         },
+	//         dataType: "jsonp",
+	//         method: "POST",
+	//         data: {
+	//           phoneUS: phone,
+	// 			    password1: password1,
+	// 			    password2: password2, 
+	// 			    email1: email,
+	// 			    zipCode: zipCode,
+	// 			    firstName: firstName, 
+	// 			    lastName: lastName,
+	// 			    state: state,  
+	// 			    address1: address1, 
+	// 			    address2: address2 
+	//           },
+	//         success: function(data, textStatus, jqXHR){
+	//           console.log('success on hitting route');
+	//           // console.log(url);
+	//           console.log(data);
 	          
-	        },
-	        error: function(XMLHttpRequest, textStatus, errorThrown){
-	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-	        }
-	  });
-	      return false;
-	});
+	//         },
+	//         error: function(XMLHttpRequest, textStatus, errorThrown){
+	//             alert("Status: " + textStatus); alert("Error: " + errorThrown);
+	//         }
+	//   });
+	//       return false;
+	// });
  	</script>
-<% include ./partials/footer %>
-
-
 
 <% include ./partials/footer %>
