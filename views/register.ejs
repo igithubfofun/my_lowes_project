@@ -1,6 +1,37 @@
 <% include ./partials/header %>
-<h1>This is the register page</h1>
-
+	<div class="container-fluid">
+		<div class="registration">
+		  <h2 class="registration_title">Registration Form</h2>
+		  <br>
+		  <form class="registration_form" name="registration_form" action="/new_user" method="POST">
+		     <input type="text" name="email" placeholder="E-mail">
+		     <br><br>
+		     <input type="text" name="password1" placeholder="Password">
+		     <br><br>
+		     <input type="text" name="password2" placeholder="Repeat password">
+		     <br><br>
+		     <input type="number" name="phone" placeholder="Phone number">
+		     <br><br>
+		     <input type="number" name="zipCode" placeholder="Zip Code">
+		     <br><br>
+		     <input type="text" name="address1" placeholder="Address 1">
+		     <br><br>
+		     <input type="text" name="address2" placeholder="Address 2">
+		     <br><br>
+		     <input type="text" name="state" placeholder="State">
+		     <br><br>
+		     <input type="text" name="firstName" placeholder="First Name">
+		     <br><br>
+		     <input type="text" name="lastName" placeholder="Last Name">
+		     <br><br>
+		     <nav class="navbar navbar-default navbar-fixed-bottom">
+		        <div class="footbox">
+		           <input class="submit-btn" type="submit" name="submit" value="Submit">
+		        </div>
+		     </nav>
+		  </form>
+		</div>
+  </div>
 
 
 <% include ./partials/footer %>
