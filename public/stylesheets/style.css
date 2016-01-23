@@ -1,12 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@media only screen and (max-width: 1334px)
+@media only screen and (min-width: 750px)
+
+* {
+  box-sizing: border-box;
 }
 
-.navbar {
-	background-color: black;
-	height: 84px;
+body {
+  padding: 30px;
+  /*margin-right: none;
+  margin-left: none;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f2f2f2;
 }
+
 
 .nav_header {
 	text-align: center;
@@ -18,9 +24,84 @@ body {
 	font-size: 12px;
 	float: right;
 	margin-right: 5%;
+  font-size: 8px;
 }
 
 
 a {
   color: #00B7FF;
+}
+
+img.img-rounded {
+  height: 84px;
+  width: 200px;
+
+}
+
+.header {
+  background-color: rgb(8, 74, 142);
+}
+
+.menu-btn div {
+  position: absolute;
+  left: 100%;
+  top: 64%;
+  padding-right: 8px;
+  margin-top: -0.50em;
+  line-height: 1.2;
+  font-size: 18px;
+  font-weight: 200;
+  vertical-align: middle;
+  z-index: 99;
+  cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+  width: 19px;
+  height: 3px;
+  margin: 4px 0;
+  background: rgb(0,0,0);
+  z-index: 99;
+  cursor: pointer;
+
+}
+
+.responsive-menu{
+  display: none;
+  cursor: pointer;
+  width:100px;
+
+}
+
+.responsive-menu:hover{
+  cursor: pointer;
+}
+
+.expand {
+  display: block !important;
+}
+
+.empty_space {
+  cursor: pointer;
+}
+
+.main {
+  margin-top: 90px;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.userpic {
+  margin-top: 4px;
+}
+
+.position_right {
+  position: absolute;
+  left: -64px;
+  top: 23px;
+  text-align: right;
+
 }
