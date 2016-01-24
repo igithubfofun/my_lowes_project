@@ -44,11 +44,12 @@
 
 <div class='container-fluid'>
 <% for(j=0;j<project.length;j++) { %>
+  <h3 style='margin-left:25px; margin-top:5px;'><%= project[j].projectName %></h3>
 	<ul style='list-style:none;'>
 		<% for(i=0;i<project[j].album.length;i++) { %>
 			<li>
 				
-				<img  style="border= 1px solid black; margin-bottom: 5px; margin-left:-50px;width:375px; height:375px;" src="<%= project[j].album[i][0] %>">
+				<img  style="border= 1px solid black; margin-bottom: 5px; margin-left:-45px; width:375px; height:375px;" src="<%= project[j].album[i][0] %>">
 							
 			</li>
 		<% } %>
