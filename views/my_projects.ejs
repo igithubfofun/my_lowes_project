@@ -12,9 +12,55 @@
 			<option value="bath">Bath</option>
 			<option value="bedroom">Bedroom</option>
 			<option value="lawnAndGarden">Lawn & Garden</option>
+			<option value="other">Other</option>
 		</select>
 		<br>
+		<select name="style" class='form-control'>
+			<option value="eclectic">Eclectic</option>
+			<option value="cottage">Cottage</option>
+			<option value="mediterranean">Mediterranean</option>
+			<option value="romantic">Romantic</option>
+			<option value="contemporary">Contemporary</option>
+			<option value="asian">Asian</option>
+			<option value="coastal">Coastal</option>
+			<option value="modern">Modern</option>
+			<option value="oldWorld">Old World</option>
+			<option value="Traditional">Traditional</option>
+			<option value="other">Other</option>
+		</select>
+		<br>
+		<div class="input_fields_wrap">
+    	<button class="add_field_button">Add More Fields</button>
+    	<div>
+    		<input class="form-control" type="text" name="imageUrl1" placeholder="Image Url">
+				<br>
+				<input class="form-control" type="text" name="comment1" placeholder="Comment">
+				<br>
+				<input style="display: none" type="text" name="step" value="1">
+    	</div>
+		</div>
+		<input id="numberOfSteps" style="display: none" type="text" name="numberOfSteps" value="1">
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
-</div>
+
+	<script>
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+          x++; //text box increment
+          var appText = '<div><input class="form-control" type="text" name="imageUrl'+x+'"placeholder="Image Url"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
+          $(wrapper).append(appText); //add input box
+          $('#numberOfSteps').val(x);
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+        $('#numberOfSteps').val(x);
+    })
+	</script>
+
 <% include ./partials/footer %>

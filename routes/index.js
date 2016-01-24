@@ -11,6 +11,15 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+/* Hitting up Wish List api */
+router.get('/my_wishlist', function(req, res){
+
+});
+
+router.get('/projects_list', function(req, res){
+  res.render('projects_list');
+});
+
 /* My projects page */
 router.get('/my_projects', function(req, res){
   Project.find({}, function(err, projects){
@@ -48,6 +57,7 @@ router.post('/authenticate', function(req, res){
           console.log('body: ',body);
           console.log(body.SSOToken);
           var token = body.SSOToken;
+          res.cookie('SSOToken', token, { httpOnly: true });
           console.log('token: ',token);
           console.log('response: ',response);
           User.findOneAndUpdate({'email': logonId}, {token: token}, function(err) {
