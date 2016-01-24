@@ -1,6 +1,23 @@
-<% include ./partials/header %>
-<h1>This is the login page</h1>
+ <% include ./partials/header %>
 
+  <div class="container-fluid">
+     <div class="login">
+     		<br><br><br>
+        <h2 class="page_title">Login:</h2>
+        <br>
+        <form class="login_form" name="login_form" action="/authenticate" method="POST">
+           <input class="input_box" type="email" id="logonId" name="logonId" placeholder="E-mail">
+           <br><br>
+           <input class="input_box" type="password" id="logonPassword" name="logonPassword" placeholder="Password...">
 
+           <br><br>
+           <nav class="navbar navbar-default navbar-fixed-bottom">
+              <div class="footbox">
+                 <input class="submit-btn" type="submit" name="submit" value="Login">
+              </div>
+           </nav>
+        </form>
+     </div>
+  </div>
 
 <% include ./partials/footer %>
