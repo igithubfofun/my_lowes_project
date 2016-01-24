@@ -1,7 +1,8 @@
 <% include ./partials/header %>
 <br><br><br>
-
-	<h3>New Project</h3>
+<div class="container-fluid">
+	<h2>New Project</h2>
+	<br>
 	<form class="newProject_form" name="newProject_form" action="/new_project" method="POST">
 		<input class="form-control" type="hidden" name="userID" value="56a406943bbec77049a778cd">
 		<input class="form-control" type="text" name="projectName" placeholder="Project Name">
@@ -15,5 +16,5 @@
 		<br>
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
-
+</div>
 <% include ./partials/footer %>
