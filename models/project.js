@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 
 var projectSchema = new mongoose.Schema({
   userId: { type: String, required: true },
-  album: Array,
-  category: String,
+  projectName: { type: String, required: true },
+  // album: { type: Array, required: true },
+  category: { type: String, required: true },
   created_at: Date,
   updated_at: Date
 });
