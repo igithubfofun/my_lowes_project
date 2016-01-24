@@ -8,7 +8,17 @@ var request = require('request');
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  Project.find({}, function(err, project){
+    console.log(project);
+    res.render('index', {project: project})
+  })
+});
+
+router.get('/test', function(req, res, next){
+  Project.find({}, function(err, project){
+    console.log(project);
+    res.render('test', {project: project})
+  })
 });
 
 /* Hitting up Wish List api */
@@ -25,7 +35,8 @@ router.get('/projects_list', function(req, res){
         console.log("My projects_list user found one with token!");
         var userId = user['_id'];
         var name = user['firstName'];
-        Project.findOne({userId:userId}, function(err, project){
+        Project.find({userId:userId}, function(err, project){
+          console.log(project);
           res.render('projects_list', {project: project, name:name});
         })  
       } else {
@@ -124,9 +135,10 @@ router.post('/authenticate', function(req, res){
           console.log('error: ',error);
         } else {
           // console.log('body: ',body);
+          // res.cookie('SSOToken', "",{ httpOnly:true});
           console.log(body.SSOToken);
           var token = body.SSOToken;
-          res.cookie('SSOToken', token, { httpOnly: true });
+          res.cookie('SSOToken', token);
           var test = req.headers.cookie;
           console.log('token: ',token);
           console.log('test: ',test);
