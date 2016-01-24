@@ -1,11 +1,17 @@
 <% include ./partials/header %>
-<br><br><br>
 
-	<h3>Hello <%= name %></h3>
+<div class= 'col-xs-10 col-xs-offset-2'>
+	<h3 style='font-weight:900;'>Hello <%= name %></h3>
+</div>
+
+<div class= 'col-xs-10 col-xs-offset-1'>
+	<p>Show off your hard work.</p>
+
+<div class="well well-lg">
 	<form class="newProject_form" name="newProject_form" action="/new_project" method="POST">
 		<input class="form-control" type="hidden" name="userId" value="<%= userId %>">
 		<input class="form-control" type="text" name="projectName" placeholder="Project Name">
-		<br>
+		
 		<select name="category" class='form-control'>
 			<option value="kitchen">Kitchen</option>
 			<option value="bath">Bath</option>
@@ -13,7 +19,7 @@
 			<option value="lawnAndGarden">Lawn & Garden</option>
 			<option value="other">Other</option>
 		</select>
-		<br>
+		
 		<select name="projectStyle" class='form-control'>
 			<option value="eclectic">Eclectic</option>
 			<option value="cottage">Cottage</option>
@@ -27,7 +33,7 @@
 			<option value="Traditional">Traditional</option>
 			<option value="other">Other</option>
 		</select>
-		<br>
+		
 		<div class="input_fields_wrap">
     	<div>
     		<p class="stepTitle">Step 1</p>	
@@ -38,13 +44,13 @@
 				<input style="display: none" type="text" name="step" value="1">			
     	</div> 	
 		</div>
-		<br>
+		
 		<button class="add_field_button btn btn-default">Add Another Step</button>
 		<input id="numberOfSteps" style="display: none" type="text" name="numberOfSteps" value="1">
-		<br>
-		<br>
+		
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
+</div>
 	<script>
 	$(document).ready(function() {
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
