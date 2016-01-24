@@ -50,7 +50,7 @@ router.get('/my_projects', function(req, res){
 //   res.render('my_projects', {user: req.user});
 });
 
-<<<<<<< HEAD
+
 router.post('/new_project', function(req, res){
   var userId = req.body.userId;
   console.log(userId);
@@ -158,8 +158,7 @@ router.post('/new_project', function(req, res){
 //   });
 // });
 // });
-=======
->>>>>>> master
+
 
 /* Login form */
 router.get('/login', function(req, res){
