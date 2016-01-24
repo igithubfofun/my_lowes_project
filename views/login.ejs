@@ -1,16 +1,14 @@
-<% include ./partials/header %>
-  <div class="container-fluid">
-     <div class="login">
-     		<br><br><br>
-        <h2 class="page_title">Login:</h2>
-        <br>
 
+ <% include ./partials/header %>
+
+
+<div class="container-fluid">
+	<div class="well well-lg">
+     <div class="login">
+        <h2 class="page_title center">Please Login</h2>
         <form class="login_form" name="login_form" action="/authenticate" method="POST">
            <input class="input_box form-control" type="email" id="logonId" name="logonId" placeholder="E-mail">
-           <br><br>
            <input class="input_box form-control" type="password" id="logonPassword" name="logonPassword" placeholder="Password">
-
-           <br><br>
                  <input class="submit-btn btn btn-default" type="submit" name="submit" value="Login">
         </form>
      </div>
