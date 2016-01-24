@@ -11,7 +11,9 @@ var userSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   address1: { type: String},
   address2: { type: String},
-  state: { type: String},
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  token: { type: String},
   created_at: Date,
   updated_at: Date
 });
