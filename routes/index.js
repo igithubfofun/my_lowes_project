@@ -5,11 +5,19 @@ var User = require('../models/user');
 var Project = require('../models/project')
 var mongoose = require('mongoose');
 var request = require('request');
-var token = "";
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
   res.render('index');
+});
+
+/* Hitting up Wish List api */
+router.get('/my_wishlist', function(req, res){
+
+});
+
+router.get('/projects_list', function(req, res){
+  res.render('projects_list');
 });
 
 /* My projects page */
@@ -44,13 +52,22 @@ router.post('/authenticate', function(req, res){
           json: true,   // <--Very important!!!
           body: lowes_logon
       }, function (error, response, body){
+        if(error) {
+          console.log('error: ',error);
+        } else {
           console.log('body: ',body);
           console.log(body.SSOToken);
-          token = body.SSOToken;
+          var token = body.SSOToken;
+          res.cookie('SSOToken', token, { httpOnly: true });
           console.log('token: ',token);
           console.log('response: ',response);
-          console.log('error: ',error);
-          res.redirect('/my_projects', {email: logonId});
+          User.findOneAndUpdate({'email': logonId}, {token: token}, function(err) {
+            if (err) {
+              console.log('got an error');
+            }
+          });
+          res.redirect('/my_projects');
+        }
       });
 
 });
@@ -74,21 +91,7 @@ router.post('/new_user', function(req,res,next){
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 
-	// var new_user = new User({
- //    email: email,
- //    password1: password1,
- //    password2: password2, 
- //    phone: phone, 
- //    zipCode: zipCode, 
- //    address1: address1, 
- //    address2: address2,
- //    city: city, 
- //    state: state, 
- //    firstName: firstName, 
- //    lastName: lastName
- //  });
-
-var lowes_user = {
+  var lowes_user = {
     phoneUS: phone,
     password1: password1,
     password2: password2, 
@@ -105,10 +108,10 @@ var lowes_user = {
     address2: address2,
     subscriptions: ""  
   };
-var key = process.env.LOWES_API_KEY;
-var url = 'http://api.lowes.com/customer/registration?api_key='+key;
+  var key = process.env.LOWES_API_KEY;
+  var url = 'http://api.lowes.com/customer/registration?api_key='+key;
 
-request({
+  request({
       url: url,
       method: "POST",
       headers: {
@@ -121,10 +124,10 @@ request({
       console.log('error: ',error);
       res.redirect('/register');
     } else {
-      console.log('body: ',body);
-      console.log(body.SSOToken)
-      token = body.SSOToken;
-      console.log('response: ',response);
+      // console.log('body: ',body);
+      console.log('token: ', body.SSOToken)
+      var token = body.SSOToken;
+      // console.log('response: ',response);
       var new_user = new User({
         email: email,
         password1: password1,
@@ -139,6 +142,7 @@ request({
         lastName: lastName,
         token: token
       });
+      console.log(new_user);
       new_user.save(function(err) {
         if (err) {
           console.log('User did not save');
@@ -150,31 +154,6 @@ request({
     }
   });
 });
-
-//   new_user.save(function(err) {
-//     if (err) {
-//       res.redirect('/register', {fail: err});
-//     } else {
-//       console.log('User saved successfully');
-//       request({
-//           url: url,
-//           method: "POST",
-//           headers: {
-//             'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
-//           },
-//           json: true,   // <--Very important!!!
-//           body: lowes_user
-//       }, function (error, response, body){
-//           console.log('body: ',body);
-//           console.log(body.SSOToken)
-//           token = body.SSOToken;
-//           console.log('response: ',response);
-//           console.log('error: ',error);
-//       });
-//       res.redirect('/');
-//     }
-//   }); 
-// });
 
 module.exports = router;
 

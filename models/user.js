@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
   address2: { type: String},
   city: { type: String, required: true },
   state: { type: String, required: true },
+  token: { type: String},
   created_at: Date,
   updated_at: Date
 });
