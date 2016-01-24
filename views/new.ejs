@@ -1,0 +1,15 @@
+<% include ./partials/header %>
+
+<form style='margin-top:200px' class="newProject_form" name="newProject_form" action="/new" method="POST">
+	<input class='form-control' type="hidden" name="userID" value="56a406943bbec77049a778cd">
+	<input class='form-control' type="text" name="projectName" placeholder="Project Name">
+	<select name="category" class='form-control'>
+		<option value="kitchen">Kitchen</option>
+		<option value="bath">Bath</option>
+		<option value="bedroom">Bedroom</option>
+		<option value="lawnAndGarden">Lawn & Garden</option>
+	</select>
+	<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
+</form>
+
+<% include ./partials/footer %>

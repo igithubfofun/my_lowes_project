@@ -3,12 +3,17 @@ var router = express.Router();
 var User = require('../models/user');
 var Project = require('../models/project')
 
-/* GET users listing. */
+/* GET project listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('my_projects');
 });
 
-router.post('/', function(req, res, next){
+router.get('/new', function(req, res, next) {
+	res.render('new');
+})
+
+
+router.post('/new', function(req, res, next){
 	var userID = req.body.userID;
 	var name = req.body.projectName;
 	var projectName = req.body.album;
@@ -22,9 +27,9 @@ router.post('/', function(req, res, next){
 
 	newProject.save(function(err){
 		if (err) console.log(err);
-
-		res.redirect('/');
 	});
+	res.redirect('/');
 });
+
 
 module.exports = router;
