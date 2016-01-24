@@ -47,8 +47,9 @@
     <div class="item">
       <img src="http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg">
       <div class="carousel-caption">
+
         <h3>Bedroom</h3>
-      </div>
+      <!-- </div> -->
     </div>
     <div class="item">
       <img src="http://www.ziqmi.com/wp-content/uploads/2014/05/backyard-patio-ideas-on-a-budget-with-best-landscape.jpg">
@@ -68,4 +69,18 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<% for(j=0;j<project.length;j++) { %>
+	<p><%= project[j].projectName %></p>
+	<p><%= project[j].projectStyle %></p>
+	<p><%= project[j].category %></p>
+	<ul>
+		<% for(i=0;i<project[j].album.length;i++) { %>
+			<li>
+				<p>Step <%= project[j].album[i][2] %></p>
+				<img src="<%= project[j].album[i][0] %>">
+				<p><%= project[j].album[i][1] %></p>			
+			</li>
+		<% } %>
+	</ul>
+<% } %>
 <% include ./partials/footer %>
