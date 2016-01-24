@@ -23,7 +23,16 @@ img.img-rounded {
   padding: 5px;
   border-bottom: 1px solid #000;
 }
+/********************
+*       HEADER/NAV   *
+********************/
 
+li {
+  color: white;
+}
+.links {
+  color:white;
+}
 /*********************
 *       INDEX        *
 *********************/
@@ -31,9 +40,10 @@ img.img-rounded {
   color: #000;
   margin-bottom: 20px;
   text-align: right;
-  font-weight: 900; 
+  font-weight: 900;
 }
 #bathroom-pic,#kitchen-pic,#bedroom-pic,#lg-pic {
+  -webkit-filter: brightness(83%);
   background-origin: center;
   background-size: cover;
   width:100%;
@@ -45,20 +55,9 @@ img.img-rounded {
 #kitchen-pic{background-image: url('http://rooms.com/wp-content/uploads/2015/10/Super-Snake.jpg');}
 #bedroom-pic{background-image: url('http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg');}
 #lg-pic{background-image: url('http://www.ziqmi.com/wp-content/uploads/2014/05/backyard-patio-ideas-on-a-budget-with-best-landscape.jpg');}
-#bathroom-text, #kitchen-text, #bedroom-text, #lg-text {
+
+#bathroom-text h1, #kitchen-text h1, #bedroom-text h1, #lg-text h1 {
   text-align: center;
   font-weight: 800;
-  color: #084b8e;
   text-shadow: 1px 1px rgba(255, 255, 255, .7);
 }
-
-
-
-
-
-
-
-
-
-
-
