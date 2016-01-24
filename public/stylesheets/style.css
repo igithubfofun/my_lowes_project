@@ -13,8 +13,8 @@ a:hover {
   color: #222222;
 }
 img.img-rounded {
-  height: 84px;
-  width: 200px;
+  height: 50px;
+  width: 100px;
   border: 1px solid #3b7ebf;
 }
 
@@ -40,7 +40,7 @@ img.img-rounded {
 }
 #carousel-example-generic{
   margin-top: -20px;
-
+  border-bottom: 1px solid black;
   ;
 }
 
