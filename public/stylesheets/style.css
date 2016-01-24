@@ -15,6 +15,7 @@ a:hover {
 img.img-rounded {
   height: 84px;
   width: 200px;
+  border: 1px solid #3b7ebf;
 }
 
 #head {
@@ -35,7 +36,7 @@ img.img-rounded {
 }
 #carousel-example-generic{
   margin-top: -20px;
-}
+
 
 
 
