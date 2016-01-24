@@ -17,7 +17,26 @@ router.get('/my_wishlist', function(req, res){
 });
 
 router.get('/projects_list', function(req, res){
-  res.render('projects_list');
+  var test = req.headers.cookie;
+  if (test){
+    console.log("Cookie from header: ",test);
+    User.findOne({token: test}, function(err, user){
+      if (user){
+        console.log("My projects_list user found one with token!");
+        var userId = user['_id'];
+        var name = user['firstName'];
+        Project.findOne({userId:userId}, function(err, project){
+          res.render('projects_list', {project: project, name:name});
+        })  
+      } else {
+        console.log("Not logged in");
+        res.redirect('/login');
+      }  
+    });
+  } else {
+    console.log("No token");
+    res.redirect('/login');
+  }
 });
 
 /* My projects page */
@@ -25,12 +44,6 @@ router.get('/my_projects', function(req, res){
   var test = req.headers.cookie;
   if (test){
     console.log("Cookie from header: ",test);
-    // console.log("Cookie after substring action: " + test.substring(9));
-    // var token = test.substring(9);
-    // console.log(token);
-    // var testToken = "q2L%2BQpF2%2FWgXHkOV5CkOa78go08zomlRnI5xN9kjELFazrBwSvGFZ8YLdIOiAcIK";
-    // console.log(testToken);
-    // var testId = "56a424c365f7344b4ba23afe";
     User.findOne({token: test}, function(err, user){
       if (user){
         console.log("My projects user find one with token: ");
@@ -44,10 +57,8 @@ router.get('/my_projects', function(req, res){
     });
   } else {
     console.log("No token");
+    res.redirect('/login');
   }
-
-
-//   res.render('my_projects', {user: req.user});
 });
 
 
@@ -84,81 +95,7 @@ router.post('/new_project', function(req, res){
         }
       });
 
-  });
-
-//   var zipCode = req.body.zipCode;
-//   var address1 = req.body.address1;
-//   var address2 = req.body.address2;
-//   var city = req.body.city;
-//   var state = req.body.state;
-//   var firstName = req.body.firstName;
-//   var lastName = req.body.lastName;
-
-//   var lowes_user = {
-//     phoneUS: phone,
-//     password1: password1,
-//     password2: password2, 
-//     email1: email,
-//     zipCode: zipCode,
-//     storeNumber: "",
-//     firstName: firstName, 
-//     lastName: lastName,
-//     activityGuid: "",
-//     myLowesCardNumber: "",
-//     city: city,
-//     state: state,  
-//     address1: address1, 
-//     address2: address2,
-//     subscriptions: ""  
-//   };
-//   var key = process.env.LOWES_API_KEY;
-//   var url = 'http://api.lowes.com/customer/registration?api_key='+key;
-
-//   request({
-//       url: url,
-//       method: "POST",
-//       headers: {
-//         'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
-//       },
-//       json: true,   // <--Very important!!!
-//       body: lowes_user
-//     }, function (error, response, body){
-//     if (error) {
-//       console.log('error: ',error);
-//       res.redirect('/register');
-//     } else {
-//       // console.log('body: ',body);
-//       console.log('token: ', body.SSOToken)
-//       var token = body.SSOToken;
-//       // console.log('response: ',response);
-//       var new_user = new User({
-//         email: email,
-//         password1: password1,
-//         password2: password2, 
-//         phone: phone, 
-//         zipCode: zipCode, 
-//         address1: address1, 
-//         address2: address2,
-//         city: city, 
-//         state: state, 
-//         firstName: firstName, 
-//         lastName: lastName,
-//         token: token
-//       });
-//       console.log(new_user);
-//       new_user.save(function(err) {
-//         if (err) {
-//           console.log('User did not save');
-//         } else {
-//           console.log('User saved successfully');
-//           res.redirect('/');
-//         }
-//       });
-//     }
-//   });
-// });
-// });
-
+});
 
 /* Login form */
 router.get('/login', function(req, res){
