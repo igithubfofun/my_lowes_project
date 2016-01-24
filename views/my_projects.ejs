@@ -1,10 +1,9 @@
 <% include ./partials/header %>
 <br><br><br>
-<div class="container-fluid">
-	<h2>New Project</h2>
-	<br>
+
+	<h3>Hello <%= name %></h3>
 	<form class="newProject_form" name="newProject_form" action="/new_project" method="POST">
-		<input class="form-control" type="hidden" name="userID" value="56a406943bbec77049a778cd">
+		<input class="form-control" type="hidden" name="userId" value="<%= userId %>">
 		<input class="form-control" type="text" name="projectName" placeholder="Project Name">
 		<br>
 		<select name="category" class='form-control'>
@@ -15,7 +14,7 @@
 			<option value="other">Other</option>
 		</select>
 		<br>
-		<select name="style" class='form-control'>
+		<select name="projectStyle" class='form-control'>
 			<option value="eclectic">Eclectic</option>
 			<option value="cottage">Cottage</option>
 			<option value="mediterranean">Mediterranean</option>
@@ -30,8 +29,8 @@
 		</select>
 		<br>
 		<div class="input_fields_wrap">
-    	<button class="add_field_button">Add More Fields</button>
     	<div>
+    		<p class="stepTitle">Step 1</p>
     		<input class="form-control" type="text" name="imageUrl1" placeholder="Image Url">
 				<br>
 				<input class="form-control" type="text" name="comment1" placeholder="Comment">
@@ -39,11 +38,16 @@
 				<input style="display: none" type="text" name="step" value="1">
     	</div>
 		</div>
+		<br>
+		<button class="add_field_button btn btn-default">Add Another Step</button>
 		<input id="numberOfSteps" style="display: none" type="text" name="numberOfSteps" value="1">
+		<br>
+		<br>
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
 
 	<script>
+	$(document).ready(function() {
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
 
@@ -51,16 +55,16 @@
     $(add_button).click(function(e){ //on add input button click
         e.preventDefault();
           x++; //text box increment
-          var appText = '<div><input class="form-control" type="text" name="imageUrl'+x+'"placeholder="Image Url"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
-          $(wrapper).append(appText); //add input box
           $('#numberOfSteps').val(x);
-        }
+          var appText = '<div><br><p class="stepTitle">Step '+x+'</p><input class="form-control" type="text" name="imageUrl'+x+'"placeholder="Image Url"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
+          $(wrapper).append(appText); //add input box
     });
 
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
         $('#numberOfSteps').val(x);
     })
+  });
 	</script>
 
 <% include ./partials/footer %>

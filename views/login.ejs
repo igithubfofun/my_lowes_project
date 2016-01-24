@@ -1,17 +1,20 @@
-<% include ./partials/header %>
 
-<div class="container-fluid">
-  <div class="login">
-   		<br><br><br>
-      <h2 class="page_title">Login:</h2>
-      <br>
-      <form class="login_form" name="login_form" action="/authenticate" method="POST">
-        <input class="input_box form-control" type="email" id="logonId" name="logonId" placeholder="E-mail">
+  <div class="container-fluid">
+     <div class="login">
+     		<br><br><br>
+        <h2 class="page_title">Login:</h2>
         <br>
-        <input class="input_box form-control" type="password" id="logonPassword" name="logonPassword" placeholder="Password...">
-        <br>
-        <input class="submit-btn btn btn-default" type="submit" name="submit" value="Login">
-      </form>
+
+        <form class="login_form" name="login_form" action="/authenticate" method="POST">
+           <input class="input_box form-control" type="email" id="logonId" name="logonId" placeholder="E-mail">
+           <br><br>
+           <input class="input_box form-control" type="password" id="logonPassword" name="logonPassword" placeholder="Password">
+
+           <br><br>
+                 <input class="submit-btn btn btn-default" type="submit" name="submit" value="Login">
+        </form>
+     </div>
+
   </div>
 </div>
 

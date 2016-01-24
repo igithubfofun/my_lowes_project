@@ -1,108 +1,64 @@
-@media only screen and (max-width: 1334px)
-@media only screen and (min-width: 750px)
+/*********************
+*       MAIN         *
+*********************/
 
 * {
   box-sizing: border-box;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-body {
-  padding: 30px;
-  /*margin-right: none;
-  margin-left: none;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #f2f2f2;
-}
-
-
-.nav_header {
-	text-align: center;
-	font-size: 24px;
-}
-
-.navlink {
-	color: white;
-	font-size: 12px;
-	float: right;
-	margin-right: 5%;
-  font-size: 8px;
-}
-
-
 a {
-  color: #00B7FF;
+  color: #000000;
 }
-
+a:hover {
+  color: #222222;
+}
 img.img-rounded {
   height: 84px;
   width: 200px;
-
 }
 
-.header {
-  background-color: rgb(8, 74, 142);
+#head {
+  background-color: #084b8e;
+  border: 1px solid #084b8e;
+  padding: 5px;
+  border-bottom: 1px solid #000;
 }
 
-.menu-btn div {
-  position: absolute;
-  left: 100%;
-  top: 64%;
-  padding-right: 8px;
-  margin-top: -0.50em;
-  line-height: 1.2;
-  font-size: 18px;
-  font-weight: 200;
-  vertical-align: middle;
-  z-index: 99;
-  cursor: pointer;
-}
-
-.menu-btn span {
-  display: block;
-  width: 19px;
-  height: 3px;
-  margin: 4px 0;
-  background: rgb(0,0,0);
-  z-index: 99;
-  cursor: pointer;
-
-}
-
-.responsive-menu{
-  display: none;
-  cursor: pointer;
-  width:100px;
-
-}
-
-.responsive-menu:hover{
-  cursor: pointer;
-}
-
-.expand {
-  display: block !important;
-}
-
-.empty_space {
-  cursor: pointer;
-}
-
-.main {
-  margin-top: 90px;
-}
-
-.wrapper {
-  height: 100%;
-}
-
-.userpic {
-  margin-top: 4px;
-}
-
-.position_right {
-  position: absolute;
-  left: -64px;
-  top: 23px;
+/*********************
+*       INDEX        *
+*********************/
+#banner{
+  color: #000;
+  margin-bottom: 20px;
   text-align: right;
-
+  font-weight: 900; 
 }
+#bathroom-pic,#kitchen-pic,#bedroom-pic,#lg-pic {
+  background-origin: center;
+  background-size: cover;
+  width:100%;
+  height:100%;
+  margin-top: -20px;
+  padding: 90px;
+}
+#bathroom-pic{background-image: url('http://rooms.com/wp-content/uploads/2014/06/Modern-Small-Toilets-for-Small-Spaces.jpg');}
+#kitchen-pic{background-image: url('http://rooms.com/wp-content/uploads/2015/10/Super-Snake.jpg');}
+#bedroom-pic{background-image: url('http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg');}
+#lg-pic{background-image: url('http://www.ziqmi.com/wp-content/uploads/2014/05/backyard-patio-ideas-on-a-budget-with-best-landscape.jpg');}
+#bathroom-text, #kitchen-text, #bedroom-text, #lg-text {
+  text-align: center;
+  font-weight: 800;
+  color: #084b8e;
+  text-shadow: 1px 1px rgba(255, 255, 255, .7);
+}
+
+
+
+
+
+
+
+
+
+
 
