@@ -1,0 +1,16 @@
+<% for(j=0;j<project.length;j++) { %>
+      	<% if(project[j].category==="kitchen") { %>
+					<p><%= project[j].projectName %></p>
+					<p><%= project[j].projectStyle %></p>
+					<p><%= project[j].category %></p>
+					<ul>
+						<% for(i=0;i<project[j].album.length;i++) { %>
+							<li>
+								<p>Step <%= project[j].album[i][2] %></p>
+								<img src="<%= project[j].album[i][0] %>">
+								<p><%= project[j].album[i][1] %></p>			
+							</li>
+						<% } %>
+					</ul>
+					<% } %>
+				<% } %>
