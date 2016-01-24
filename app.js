@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var projects = require('./routes/projects');
 var app = express();
 
 // view engine setup
@@ -28,6 +28,7 @@ mongoose.connect(process.env.MONGO_DB_CONN_MY_LOWES_PROJECT);
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/projects', projects);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
