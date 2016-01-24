@@ -6,8 +6,11 @@
 }
 
 body {
-  padding: 50px;
+  padding: 30px;
+  /*margin-right: none;
+  margin-left: none;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f2f2f2;
 }
 
 
@@ -21,6 +24,7 @@ body {
 	font-size: 12px;
 	float: right;
 	margin-right: 5%;
+  font-size: 8px;
 }
 
 
@@ -60,11 +64,14 @@ img.img-rounded {
   background: rgb(0,0,0);
   z-index: 99;
   cursor: pointer;
+
 }
 
 .responsive-menu{
   display: none;
   cursor: pointer;
+  width:100px;
+
 }
 
 .responsive-menu:hover{
@@ -80,5 +87,22 @@ img.img-rounded {
 }
 
 .main {
-  margin-top: 50px;
+  margin-top: 90px;
 }
+
+.wrapper {
+  height: 100%;
+}
+
+.userpic {
+  margin-top: 4px;
+}
+
+.position_right {
+  position: absolute;
+  left: -64px;
+  top: 23px;
+  text-align: right;
+
+}
+
