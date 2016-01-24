@@ -5,31 +5,28 @@
 		  <h2 class="registration_title">Registration Form</h2>
 		  <br>
 		  <form class="registration_form" name="registration_form" action="/new_user" method="POST">
-		     <input id="email" class="form-control" type="email" name="email" placeholder="E-mail">
-
-		     <br>
-		     <div class="fieldWrapper">
-
-            <input id="password1" class="form-control" type="password" name="password1" placeholder="Password">
-	        </div>
+		    <input id="email" class="form-control" type="email" name="email" placeholder="E-mail">
+		    <br>
+		    <div class="fieldWrapper">
+          <input id="password1" class="form-control" type="password" name="password1" placeholder="Password">
+        </div>
           <br>
-	        <div class="fieldWrapper">
-
-	            <input id="password2" class="form-control" type="password" name="password2"  onkeyup="checkPass(); return false;" placeholder="Confirm Password">
-	            <span id="confirmMessage" class="confirmMessage"></span>
-	        </div>
-		     <br>
-		     <input id="phone" class="form-control" type="tel" pattern="\d{10}" name="phone" title="Phone Number (Format: 5554447777)" placeholder="Phone Number (Format: 5554447777)">
-		     <br>
-		     <input id="zipCode" class="form-control" type="number" pattern="\d{5}" name="zipCode" placeholder="Zip Code">
-		     <br>
-		     <input id="address1" class="form-control"  type="text" name="address1" placeholder="Address 1">
-		     <br>
-		     <input id="address2" class="form-control"  type="text" name="address2" placeholder="Address 2">
-		     <br>
-		     <input id="city" class="form-control"  type="text" name="city" placeholder="City">
-		     <br>
-		     <select id="state"  class="form-control" name="state">
+        <div class="fieldWrapper">
+	        <input id="password2" class="form-control" type="password" name="password2"  onkeyup="checkPass(); return false;" placeholder="Confirm Password">
+	          <span id="confirmMessage" class="confirmMessage"></span>
+	      </div>
+		      <br>
+		      <input id="phone" class="form-control" type="tel" pattern="\d{10}" name="phone" title="Phone Number (Format: 5554447777)" placeholder="Phone Number (Format: 5554447777)">
+		      <br>
+		      <input id="zipCode" class="form-control" type="number" pattern="\d{5}" name="zipCode" placeholder="Zip Code">
+		      <br>
+		      <input id="address1" class="form-control"  type="text" name="address1" placeholder="Address 1">
+		      <br>
+		      <input id="address2" class="form-control"  type="text" name="address2" placeholder="Address 2">
+		      <br>
+		      <input id="city" class="form-control"  type="text" name="city" placeholder="City">
+		      <br>
+		      <select id="state"  class="form-control" name="state">
 						<option value="AL" selected="selected">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -83,12 +80,12 @@
 						<option value="WY">Wyoming</option>
 					</select>
 
-		     <br>
-		     <input id="firstName" class="form-control"  type="text" name="firstName" placeholder="First Name">
-		     <br>
-		     <input id="lastName" class="form-control"  type="text" name="lastName" placeholder="Last Name">
-		     <br>
-		           <input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
+		      <br>
+		      <input id="firstName" class="form-control"  type="text" name="firstName" placeholder="First Name">
+		      <br>
+		      <input id="lastName" class="form-control"  type="text" name="lastName" placeholder="Last Name">
+		      <br>
+		      <input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 		  </form>
 		</div>
   </div>
