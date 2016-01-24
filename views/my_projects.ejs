@@ -36,13 +36,13 @@
 		
 		<div class="input_fields_wrap">
     	<div>
-    		<p class="stepTitle">Step 1</p>	
+    		<p class="stepTitle">Step 1</p>
     		<input class="form-control" type="text" name="imageUrl1" placeholder="Image Url">
 				<br>
 				<input class="form-control" type="text" name="comment1" placeholder="Comment">
 				<br>
-				<input style="display: none" type="text" name="step" value="1">			
-    	</div> 	
+				<input style="display: none" type="text" name="step" value="1">
+    	</div>
 		</div>
 		
 		<button class="add_field_button btn btn-default">Add Another Step</button>
@@ -50,21 +50,23 @@
 		
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
+
 </div>
+
 	<script>
 	$(document).ready(function() {
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
-    
+
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
         e.preventDefault();
           x++; //text box increment
           $('#numberOfSteps').val(x);
           var appText = '<div><br><p class="stepTitle">Step '+x+'</p><input class="form-control" type="text" name="imageUrl'+x+'"placeholder="Image Url"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
-          $(wrapper).append(appText); //add input box     
+          $(wrapper).append(appText); //add input box
     });
-    
+
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
         $('#numberOfSteps').val(x);

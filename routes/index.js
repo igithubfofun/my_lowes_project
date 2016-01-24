@@ -36,13 +36,13 @@ router.get('/projects_list', function(req, res){
         var userId = user['_id'];
         var name = user['firstName'];
         Project.find({userId:userId}, function(err, project){
-          console.log(project);
+
           res.render('projects_list', {project: project, name:name});
-        })  
+        })
       } else {
         console.log("Not logged in");
         res.redirect('/login');
-      }  
+      }
     });
   } else {
     console.log("No token");
@@ -64,7 +64,7 @@ router.get('/my_projects', function(req, res){
       } else {
         console.log("Not logged in");
         res.redirect('/login');
-      }  
+      }
     });
   } else {
     console.log("No token");
@@ -92,9 +92,9 @@ router.post('/new_project', function(req, res){
   var new_project = new Project({
     userId: userId,
     projectName: projectName,
-    category: category, 
+    category: category,
     projectStyle: projectStyle,
-    album: album,  
+    album: album,
   });
   console.log (new_project);
   new_project.save(function(err) {
@@ -176,19 +176,19 @@ router.post('/new_user', function(req,res,next){
   var lowes_user = {
     phoneUS: phone,
     password1: password1,
-    password2: password2, 
+    password2: password2,
     email1: email,
     zipCode: zipCode,
     storeNumber: "",
-    firstName: firstName, 
+    firstName: firstName,
     lastName: lastName,
     activityGuid: "",
     myLowesCardNumber: "",
     city: city,
-    state: state,  
-    address1: address1, 
+    state: state,
+    address1: address1,
     address2: address2,
-    subscriptions: ""  
+    subscriptions: ""
   };
   var key = process.env.LOWES_API_KEY;
   var url = 'http://api.lowes.com/customer/registration?api_key='+key;
@@ -215,14 +215,14 @@ router.post('/new_user', function(req,res,next){
       var new_user = new User({
         email: email,
         password1: password1,
-        password2: password2, 
-        phone: phone, 
-        zipCode: zipCode, 
-        address1: address1, 
+        password2: password2,
+        phone: phone,
+        zipCode: zipCode,
+        address1: address1,
         address2: address2,
-        city: city, 
-        state: state, 
-        firstName: firstName, 
+        city: city,
+        state: state,
+        firstName: firstName,
         lastName: lastName,
         token: token
       });
