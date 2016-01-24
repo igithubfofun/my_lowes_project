@@ -3,9 +3,8 @@
 		<div class="registration">
 		  <h2 class="registration_title">Registration Form</h2>
 		  <br>
-		  <p><%= fail %></p>
 		  <form class="registration_form" name="registration_form" action="/new_user" method="POST">
-		     <input type="email" name="email" placeholder="E-mail">
+		     <input id="email" type="email" name="email" placeholder="E-mail">
 		     <br><br>
 		     <div class="fieldWrapper">
             <label for="password1">Password:</label>
@@ -18,18 +17,17 @@
 	        </div>
 		     <br><br>
 		     <label for="phone">Phone Number (Format: 5554447777)</label>
-		     <input type='tel' pattern='\d{10}' name='phone' title='Phone Number (Format: 5554447777)'>
-		   
+		     <input id='phone' type='tel' pattern='\d{10}' name='phone' title='Phone Number (Format: 5554447777)'>
 		     <br><br>
-		  
-		     <input type='number' pattern='\d{5}' name='zipCode' placeholder="Zip Code">
+		     <input id='zipCode' type='number' pattern='\d{5}' name='zipCode' placeholder="Zip Code">
 		     <br><br>
-		     <input type="text" name="address1" placeholder="Address 1">
+		     <input id="address1" type="text" name="address1" placeholder="Address 1">
 		     <br><br>
-		     <input type="text" name="address2" placeholder="Address 2">
+		     <input id="address2" type="text" name="address2" placeholder="Address 2">
 		     <br><br>
-		    
-		     <select name="state">
+		     <input id="city" type="text" name="city" placeholder="City">
+		     <br><br>
+		     <select id="state" name="state">
 						<option value="AL" selected="selected">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -84,9 +82,9 @@
 					</select>
 
 		     <br><br>
-		     <input type="text" name="firstName" placeholder="First Name">
+		     <input id="firstName" type="text" name="firstName" placeholder="First Name">
 		     <br><br>
-		     <input type="text" name="lastName" placeholder="Last Name">
+		     <input id="lastName" type="text" name="lastName" placeholder="Last Name">
 		     <br><br>
 		     <nav class="navbar navbar-default navbar-fixed-bottom">
 		        <div class="footbox">
@@ -97,8 +95,7 @@
 		</div>
   </div>
  	<script>
- 		function checkPass()
-{
+ 		function checkPass() {
     //Store the password field objects into variables ...
     var pass1 = document.getElementById('password1');
     var pass2 = document.getElementById('password2');
@@ -124,8 +121,7 @@
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
     }
-}  
+		}  
  	</script>
-
 
 <% include ./partials/footer %>
