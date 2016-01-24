@@ -1,5 +1,20 @@
 <% include ./partials/header %>
+<br><br><br>
 <h1>This is the project_list page</h1>
+<p>Hello <%= name %></p>
+<br>
+<p><%= project.projectName %></p>
+<p><%= project.projectStyle %></p>
+<p><%= project.category %></p>
+<ul>
+	<% for(i=0;i<project.album.length;i++) { %>
+		<li>
+			<p>Step <%= project.album[i][2] %></p>
+			<img src="<%= project.album[i][0] %>">
+			<p><%= project.album[i][1] %></p>			
+		</li>
+	<% } %>
+</ul>
 
 
 

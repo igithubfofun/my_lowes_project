@@ -34,24 +34,10 @@ img.img-rounded {
   text-align: right;
   font-weight: 900; 
 }
-#bathroom-pic,#kitchen-pic,#bedroom-pic,#lg-pic {
-  background-origin: center;
-  background-size: cover;
-  width:100%;
-  height:100%;
+#carousel-example-generic{
   margin-top: -20px;
-  padding: 90px;
-}
-#bathroom-pic{background-image: url('http://rooms.com/wp-content/uploads/2014/06/Modern-Small-Toilets-for-Small-Spaces.jpg');}
-#kitchen-pic{background-image: url('http://rooms.com/wp-content/uploads/2015/10/Super-Snake.jpg');}
-#bedroom-pic{background-image: url('http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg');}
-#lg-pic{background-image: url('http://www.ziqmi.com/wp-content/uploads/2014/05/backyard-patio-ideas-on-a-budget-with-best-landscape.jpg');}
-#bathroom-text, #kitchen-text, #bedroom-text, #lg-text {
-  text-align: center;
-  font-weight: 900;
-  color: #084b8e;
-  text-shadow: 1px 1px rgba(0, 0, 0, .7);
-}
+
+
 
 
 

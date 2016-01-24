@@ -17,17 +17,85 @@ router.get('/my_wishlist', function(req, res){
 });
 
 router.get('/projects_list', function(req, res){
-  res.render('projects_list');
+  var test = req.headers.cookie;
+  if (test){
+    console.log("Cookie from header: ",test);
+    User.findOne({token: test}, function(err, user){
+      if (user){
+        console.log("My projects_list user found one with token!");
+        var userId = user['_id'];
+        var name = user['firstName'];
+        Project.findOne({userId:userId}, function(err, project){
+          res.render('projects_list', {project: project, name:name});
+        })  
+      } else {
+        console.log("Not logged in");
+        res.redirect('/login');
+      }  
+    });
+  } else {
+    console.log("No token");
+    res.redirect('/login');
+  }
 });
 
 /* My projects page */
 router.get('/my_projects', function(req, res){
-  Project.find({}, function(err, projects){
-    projects_length = projects.length;
-    res.render('my_projects', {projects_length: projects_length});
-  });
+  var test = req.headers.cookie;
+  if (test){
+    console.log("Cookie from header: ",test);
+    User.findOne({token: test}, function(err, user){
+      if (user){
+        console.log("My projects user find one with token: ");
+        var name = user['firstName'];
+        var userId = user['_id'];
+        res.render('my_projects', {name:name, userId:userId});
+      } else {
+        console.log("Not logged in");
+        res.redirect('/login');
+      }  
+    });
+  } else {
+    console.log("No token");
+    res.redirect('/login');
+  }
 });
 
+
+router.post('/new_project', function(req, res){
+  var userId = req.body.userId;
+  console.log(userId);
+  var projectName = req.body.projectName;
+  var category = req.body.category;
+  var projectStyle = req.body.projectStyle;
+  var numberOfSteps = parseInt(req.body.numberOfSteps);
+  console.log("number of steps: "+numberOfSteps);
+  var album = [];
+  for(i=1;i<numberOfSteps+1;i++){
+    var bodyUrl = 'imageUrl'+i;
+    var bodyComment = 'comment'+i;
+    var imageUrl = req.body[bodyUrl];
+    var comment = req.body[bodyComment];
+    album.push([imageUrl, comment, i]);
+  }
+  var new_project = new Project({
+    userId: userId,
+    projectName: projectName,
+    category: category, 
+    projectStyle: projectStyle,
+    album: album,  
+  });
+  console.log (new_project);
+  new_project.save(function(err) {
+        if (err) {
+          console.log('Project did not save');
+        } else {
+          console.log('Project saved successfully');
+          res.redirect('/projects_list');
+        }
+      });
+
+});
 
 /* Login form */
 router.get('/login', function(req, res){
@@ -55,13 +123,15 @@ router.post('/authenticate', function(req, res){
         if(error) {
           console.log('error: ',error);
         } else {
-          console.log('body: ',body);
+          // console.log('body: ',body);
           console.log(body.SSOToken);
           var token = body.SSOToken;
           res.cookie('SSOToken', token, { httpOnly: true });
+          var test = req.headers.cookie;
           console.log('token: ',token);
-          console.log('response: ',response);
-          User.findOneAndUpdate({'email': logonId}, {token: token}, function(err) {
+          console.log('test: ',test);
+          // console.log('response: ',response);
+          User.findOneAndUpdate({email: logonId}, {token: test}, function(err) {
             if (err) {
               console.log('got an error');
             }
@@ -127,6 +197,8 @@ router.post('/new_user', function(req,res,next){
       // console.log('body: ',body);
       console.log('token: ', body.SSOToken)
       var token = body.SSOToken;
+      res.cookie('SSOToken', token, { httpOnly: true });
+
       // console.log('response: ',response);
       var new_user = new User({
         email: email,
@@ -148,7 +220,7 @@ router.post('/new_user', function(req,res,next){
           console.log('User did not save');
         } else {
           console.log('User saved successfully');
-          res.redirect('/');
+          res.redirect('/my_projects');
         }
       });
     }
