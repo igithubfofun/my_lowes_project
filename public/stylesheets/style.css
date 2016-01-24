@@ -15,6 +15,7 @@ a:hover {
 img.img-rounded {
   height: 84px;
   width: 200px;
+  border: 1px solid #3b7ebf;
 }
 
 #head {
@@ -47,9 +48,9 @@ img.img-rounded {
 #lg-pic{background-image: url('http://www.ziqmi.com/wp-content/uploads/2014/05/backyard-patio-ideas-on-a-budget-with-best-landscape.jpg');}
 #bathroom-text, #kitchen-text, #bedroom-text, #lg-text {
   text-align: center;
-  font-weight: 800;
+  font-weight: 900;
   color: #084b8e;
-  text-shadow: 1px 1px rgba(255, 255, 255, .7);
+  text-shadow: 1px 1px rgba(0, 0, 0, .7);
 }
 
 
