@@ -8,46 +8,49 @@
 	<p>Show off your hard work.</p>
 
 <div class="well well-lg">
-	<form class="newProject_form" name="newProject_form" action="/new_project" method="POST">
+	<form class="newProject_form" name="newProject_form" enctype="multipart/form-data" action="/new_project" method="POST">
 		<input class="form-control" type="hidden" name="userId" value="<%= userId %>">
 		<input class="form-control" type="text" name="projectName" placeholder="Project Name">
 		
 		<select name="category" class='form-control'>
-			<option value="kitchen">Kitchen</option>
-			<option value="bath">Bath</option>
-			<option value="bedroom">Bedroom</option>
-			<option value="lawnAndGarden">Lawn & Garden</option>
-			<option value="other">Other</option>
+			<option value="Kitchen">Kitchen</option>
+			<option value="Bath">Bath</option>
+			<option value="Bedroom">Bedroom</option>
+			<option value="Lawn And Garden">Lawn & Garden</option>
+			<option value="Other">Other</option>
 		</select>
 		
 		<select name="projectStyle" class='form-control'>
-			<option value="eclectic">Eclectic</option>
-			<option value="cottage">Cottage</option>
-			<option value="mediterranean">Mediterranean</option>
-			<option value="romantic">Romantic</option>
-			<option value="contemporary">Contemporary</option>
-			<option value="asian">Asian</option>
-			<option value="coastal">Coastal</option>
-			<option value="modern">Modern</option>
-			<option value="oldWorld">Old World</option>
+			<option value="Eclectic">Eclectic</option>
+			<option value="Cottage">Cottage</option>
+			<option value="Mediterranean">Mediterranean</option>
+			<option value="Romantic">Romantic</option>
+			<option value="Contemporary">Contemporary</option>
+			<option value="Asian">Asian</option>
+			<option value="Coastal">Coastal</option>
+			<option value="Modern">Modern</option>
+			<option value="OldWorld">Old World</option>
 			<option value="Traditional">Traditional</option>
-			<option value="other">Other</option>
+			<option value="Other">Other</option>
 		</select>
 		
 		<div class="input_fields_wrap">
     	<div>
-    		<p class="stepTitle">Step 1</p>
-    		<input class="form-control" type="text" name="imageUrl1" placeholder="Image Url">
+    		<input type="text" name="step0" placeholder="Step 0">
+    		<br>
+
+        File <input type="file" name="img" accept="image/*">
+    		<!-- <input class="form-control" type="text" name="imageUrl1" placeholder="Image Url"> -->
 				<br>
-				<input class="form-control" type="text" name="comment1" placeholder="Comment">
+				<input class="form-control" type="text" name="comment0" placeholder="Comment">
 				<br>
-				<input style="display: none" type="text" name="step" value="1">
+				
     	</div>
 		</div>
 		
 		<button class="add_field_button btn btn-default">Add Another Step</button>
-		<input id="numberOfSteps" style="display: none" type="text" name="numberOfSteps" value="1">
-		
+		<input id="numberOfSteps" style="display: none" type="text" name="numberOfSteps" value="0">
+		<!-- <input type="submit" value="Upload"> -->
 		<input class="submit-btn btn btn-default" type="submit" name="submit" value="Submit">
 	</form>
 
@@ -58,12 +61,12 @@
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
 
-    var x = 1; //initlal text box count
+    var x = 0; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
         e.preventDefault();
           x++; //text box increment
           $('#numberOfSteps').val(x);
-          var appText = '<div><br><p class="stepTitle">Step '+x+'</p><input class="form-control" type="text" name="imageUrl'+x+'"placeholder="Image Url"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
+          var appText = '<div><input type="text" name="step'+x+'" placeholder="Step '+x+'"><br>File <input type="file" name="img" accept="image/*"><br><input class="form-control" type="text" name="comment'+x+'" placeholder="Comment"><br><input style="display: none" type="text" name="step" value="'+x+'"><a href="#" class="remove_field">Remove</a></div>'
           $(wrapper).append(appText); //add input box
     });
 

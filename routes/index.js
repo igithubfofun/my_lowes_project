@@ -5,7 +5,14 @@ var User = require('../models/user');
 var Project = require('../models/project')
 var mongoose = require('mongoose');
 var request = require('request');
+var config = require('../config');
+var jwt = require('jsonwebtoken');
+var http = require('http');
+var fs = require('fs');
 
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' })
+var imgData = "";
 /* GET index page. */
 router.get('/', function(req, res, next) {
   Project.find({}, function(err, project){
@@ -30,7 +37,8 @@ router.get('/projects_list', function(req, res){
   var test = req.headers.cookie;
   if (test){
     console.log("Cookie from header: ",test);
-    User.findOne({token: test}, function(err, user){
+    console.log("test.substring(6): ", test.substring(6));
+    User.findOne({token: test.substring(6)}, function(err, user){
       if (user){
         console.log("My projects_list user found one with token!");
         var userId = user['_id'];
@@ -55,7 +63,8 @@ router.get('/my_projects', function(req, res){
   var test = req.headers.cookie;
   if (test){
     console.log("Cookie from header: ",test);
-    User.findOne({token: test}, function(err, user){
+    console.log("test.substring(6): ", test.substring(6));
+    User.findOne({token: test.substring(6)}, function(err, user){
       if (user){
         console.log("My projects user find one with token: ");
         var name = user['firstName'];
@@ -73,7 +82,7 @@ router.get('/my_projects', function(req, res){
 });
 
 
-router.post('/new_project', function(req, res){
+router.post('/new_project', upload.array('img'), function(req, res, next){
   var userId = req.body.userId;
   console.log(userId);
   var projectName = req.body.projectName;
@@ -82,12 +91,17 @@ router.post('/new_project', function(req, res){
   var numberOfSteps = parseInt(req.body.numberOfSteps);
   console.log("number of steps: "+numberOfSteps);
   var album = [];
-  for(i=1;i<numberOfSteps+1;i++){
-    var bodyUrl = 'imageUrl'+i;
+  for(i=0;i<numberOfSteps+1;i++){
+    console.log("file",req.files[i]);
+    console.log("file",req.files[i]['path'])
+    var b = fs.readFileSync(req.files[i]['path'])
+    imgData = b.toString('base64');
     var bodyComment = 'comment'+i;
-    var imageUrl = req.body[bodyUrl];
     var comment = req.body[bodyComment];
-    album.push([imageUrl, comment, i]);
+    console.log("part of imgData: ",imgData.substring(1,20))
+    var bodyStep = 'step'+i;
+    var step = req.body[bodyStep];
+    album.push([imgData, comment, step]);
   }
   var new_project = new Project({
     userId: userId,
@@ -114,36 +128,31 @@ router.get('/login', function(req, res){
 });
 
 router.post('/authenticate', function(req, res){
-  var logonId = req.body.logonId;
-  var logonPassword = req.body.logonPassword;
-  var lowes_logon = {
-    logonId: logonId,
-    logonPassword: logonPassword
-  }
-  var key = process.env.LOWES_API_KEY;
-  var url = 'http://api.lowes.com/customer/login?api_key='+key;
-  request({
-          url: url,
-          method: "POST",
-          headers: {
-            'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
-          },
-          json: true,   // <--Very important!!!
-          body: lowes_logon
-      }, function (error, response, body){
-        if(error) {
-          console.log('error: ',error);
-        } else {
-          // console.log('body: ',body);
-          // res.cookie('SSOToken', "",{ httpOnly:true});
-          console.log(body.SSOToken);
-          var token = body.SSOToken;
-          res.cookie('SSOToken', token);
-          var test = req.headers.cookie;
-          console.log('token: ',token);
-          console.log('test: ',test);
-          // console.log('response: ',response);
-          User.findOneAndUpdate({email: logonId}, {token: test}, function(err) {
+  var email = req.body.email;
+  var password = req.body.password;
+  User.findOne({email:email}, function(err, user){
+    if (err) throw err;
+
+    if (!user) {
+      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      res.redirect('/login');
+    }
+    else if (user) {
+
+      bcrypt.compare(password, user.password, function(err, result) {
+        if (!result) {
+          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+          res.redirect('/login');
+        }
+        else {
+          // if user is found and password is right
+          // create a token
+          var token = jwt.sign({foo:'bar'}, config.secret, {
+            expiresInMinutes: 1440 // expires in 24 hours
+          });
+          res.cookie('Token', token);
+          // return the information including token as JSON
+          User.findOneAndUpdate({email: email}, {token: token}, function(err) {
             if (err) {
               console.log('got an error');
             }
@@ -151,10 +160,10 @@ router.post('/authenticate', function(req, res){
           res.redirect('/my_projects');
         }
       });
-
+    }
+  });
 });
-
-
+      
 /* New User form */
 router.get('/register', function(req, res){
 	res.render('register');
@@ -163,78 +172,31 @@ router.get('/register', function(req, res){
 router.post('/new_user', function(req,res,next){
 	var email = req.body.email;
 	var password1 = req.body.password1;
-	var password2 = req.body.password2;
-	var phone = req.body.phone;
-	var zipCode = req.body.zipCode;
-	var address1 = req.body.address1;
-	var address2 = req.body.address2;
-  var city = req.body.city;
-	var state = req.body.state;
 	var firstName = req.body.firstName;
-	var lastName = req.body.lastName;
 
-  var lowes_user = {
-    phoneUS: phone,
-    password1: password1,
-    password2: password2,
-    email1: email,
-    zipCode: zipCode,
-    storeNumber: "",
-    firstName: firstName,
-    lastName: lastName,
-    activityGuid: "",
-    myLowesCardNumber: "",
-    city: city,
-    state: state,
-    address1: address1,
-    address2: address2,
-    subscriptions: ""
-  };
-  var key = process.env.LOWES_API_KEY;
-  var url = 'http://api.lowes.com/customer/registration?api_key='+key;
-
-  request({
-      url: url,
-      method: "POST",
-      headers: {
-        'Authorization':'Basic QWRvYmU6ZW9pdWV3ZjA5ZmV3bw=='
-      },
-      json: true,   // <--Very important!!!
-      body: lowes_user
-    }, function (error, response, body){
-    if (error) {
-      console.log('error: ',error);
-      res.redirect('/register');
-    } else {
-      // console.log('body: ',body);
-      console.log('token: ', body.SSOToken)
-      var token = body.SSOToken;
-      res.cookie('SSOToken', token, { httpOnly: true });
-
-      // console.log('response: ',response);
-      var new_user = new User({
+  var new_user = new User({
         email: email,
-        password1: password1,
-        password2: password2,
-        phone: phone,
-        zipCode: zipCode,
-        address1: address1,
-        address2: address2,
-        city: city,
-        state: state,
+        password: password1,
         firstName: firstName,
-        lastName: lastName,
-        token: token
       });
-      console.log(new_user);
-      new_user.save(function(err) {
+  console.log(new_user);
+  new_user.save(function(err) {
+    if (err) {
+      console.log('User did not save');
+    } else {
+      console.log('User saved successfully');
+      var token = jwt.sign({foo:'bar'}, config.secret, {
+            expiresInMinutes: 1440 // expires in 24 hours
+          });
+      res.cookie('Token', token);
+      console.log('token: ',token);
+      // return the information including token as JSON
+      User.findOneAndUpdate({email: email}, {token: token}, function(err) {
         if (err) {
-          console.log('User did not save');
-        } else {
-          console.log('User saved successfully');
-          res.redirect('/my_projects');
+          console.log('got an error');
         }
       });
+      res.redirect('/my_projects');
     }
   });
 });

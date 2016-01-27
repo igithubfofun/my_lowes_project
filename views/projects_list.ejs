@@ -15,8 +15,8 @@
 	<% for(i=0;i<project[j].album.length;i++) { %>
 
 		<li>
-			<p>Step <%= project[j].album[i][2] %></p>
-			<img class="img-rounded" style="width:375px; height:375px;" src="<%= project[j].album[i][0] %>">
+			<p><%= project[j].album[i][2] %></p>
+			<img class="img-rounded" style="width:375px; height:375px;" src="data:image/jpeg;base64,<%= project[j].album[i][0] %>">
 			<p><%= project[j].album[i][1] %></p>
 		
 
