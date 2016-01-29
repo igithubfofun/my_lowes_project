@@ -1,31 +1,33 @@
 <% include ./partials/header %>
 
-
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img class='car_img' src="http://rooms.com/wp-content/uploads/2014/06/Modern-Small-Toilets-for-Small-Spaces.jpg">
+      <img class='car_img' alt='Bath' src="http://rooms.com/wp-content/uploads/2014/06/Modern-Small-Toilets-for-Small-Spaces.jpg">
       <div class="carousel-caption">
         <h3>Bathroom</h3>
       </div>
     </div>
     <div class="item">
-      <img class='car_img' src="http://rooms.com/wp-content/uploads/2015/10/Super-Snake.jpg">
+      <img class='car_img' alt='Kitchen' src="http://rooms.com/wp-content/uploads/2015/10/Super-Snake.jpg">
       <div class="carousel-caption">
         <h3>Kitchen</h3>
       </div>
     </div>
     <div class="item">
-      <img class='car_img' src="http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg">
+      <img class='car_img' alt='Lawn And Garden' src="http://www.beeyoutifullife.com/wp-content/uploads/2014/12/backyard-water-features-Landscape-Traditional-with-accent-lighting-backyard-boulders.jpg">
       <div class="carousel-caption">
-
+        <h3>Lawn and Garden</h3>
+      </div>
+    </div>
+    <div class="item">
+      <img class='car_img' alt='Bedroom' src="http://www.truzdesign.com/wp-content/uploads/ktz/Wonderful-2016-apartment-bedroom-ideas-Picture-Recent-Collection-30q60134wfhj1pwqofv668.jpg">
+      <div class="carousel-caption">
         <h3>Bedroom</h3>
-      <!-- </div> -->
+      </div>
     </div>
     
-
-  </div>
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -38,24 +40,23 @@
   </a>
 </div>
 
-<div style='height:150px;'>
-  <h2 style='margin-top:70px; margin-left:20px;  'class='col-xs-12'>Recent Projects</h2>
+<div class="row">
+  <div style="display:none" id="styleChoice" class="col-sx-12">
+    <img class="style_choice" id="Asian" src="/images/asian.jpg">
+    <img class="style_choice" id="Coastal" src="/images/coastal.jpg">
+    <img class="style_choice" id="Contemporary" src="/images/contemporary.jpg">
+    <img class="style_choice" id="Cottage" src="/images/cottage.jpg">
+    <img class="style_choice" id="Eclectic" src="/images/eclectic.jpg">
+    <img class="style_choice" id="Mediterranean" src="/images/mediterranean.jpg">
+    <img class="style_choice" id="Modern" src="/images/modern.jpg">
+    <img class="style_choice" id="OldWorld" src="/images/oldWorld.jpg">   
+    <img class="style_choice" id="Romantic" src="/images/romantic.jpg">
+    <img class="style_choice" id="Traditional" src="/images/traditional.jpg">
+    <img class="style_choice" id="Other" src="/images/other.jpg">
+  </div>
 </div>
+<div style="display: none" id="projectDiv"></div>
 
-<div class='container-fluid'>
-<% for(j=0;j<project.length;j++) { %>
-  <h3 style='margin-left:25px; margin-top:5px;'><%= project[j].projectName %></h3>
-	<ul style='list-style:none;'>
-		<% for(i=0;i<project[j].album.length;i++) { %>
-			<li>
-				
-				<img  style="border= 1px solid black; margin-bottom: 5px; margin-left:-45px; width:375px; height:375px;" src="data:image/jpeg;base64,<%= project[j].album[i][0] %>">
-							
-			</li>
-		<% } %>
-	</ul>
-<% } %>
-</div>
-
+<script src="/javascripts/home.js"></script>
 
 <% include ./partials/footer %>

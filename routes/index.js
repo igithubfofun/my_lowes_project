@@ -15,16 +15,35 @@ var upload = multer({ dest: 'uploads/' })
 var imgData = "";
 /* GET index page. */
 router.get('/', function(req, res, next) {
-  Project.find({}, function(err, project){
-    console.log(project);
-    res.render('index', {project: project})
-  })
+  res.render('index')
 });
 
 router.get('/test', function(req, res, next){
   Project.find({}, function(err, project){
     console.log(project);
     res.render('test', {project: project})
+  })
+});
+
+// router.get('/sorted', function(req, res, next) {
+
+// });
+
+router.post('/sorting', function(req,res,next){
+  var category = req.body.category;
+  var projectStyle = req.body.projectStyle;
+  console.log("Category: ",category);
+  console.log("projectStyle: ", projectStyle);
+  Project.find({category:category, projectStyle:projectStyle}, function(err, project){
+    console.log("project: ",project);
+    console.log("category: ",category);
+    console.log("projectStyle: ",projectStyle);
+    res.json({
+      success: true,
+      project: project, 
+      category: category, 
+      projectStyle:projectStyle, 
+      list: 'show'})
   })
 });
 
