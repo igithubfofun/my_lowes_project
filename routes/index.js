@@ -34,17 +34,46 @@ router.post('/sorting', function(req,res,next){
   var projectStyle = req.body.projectStyle;
   console.log("Category: ",category);
   console.log("projectStyle: ", projectStyle);
-  Project.find({category:category, projectStyle:projectStyle}, function(err, project){
-    console.log("project: ",project);
-    console.log("category: ",category);
-    console.log("projectStyle: ",projectStyle);
-    res.json({
+  if (category==="all"||(projectStyle==="not"&&category==="not")) {
+    Project.find({}, function(err, project){
+      res.json({
+      success: true,
+      project: project, 
+      category: "the", 
+      projectStyle:"All", 
+      list: 'show'})
+    })
+  } else if (projectStyle==="not") {
+    Project.find({category:category}, function(err, project){
+      res.json({
       success: true,
       project: project, 
       category: category, 
-      projectStyle:projectStyle, 
+      projectStyle:"The", 
       list: 'show'})
-  })
+    })
+  } else if (category==="not") {
+    Project.find({projectStyle:projectStyle}, function(err, project){
+      res.json({
+      success: true,
+      project: project, 
+      category: "style", 
+      projectStyle: projectStyle, 
+      list: 'show'})
+    })
+  } else {
+    Project.find({category:category, projectStyle:projectStyle}, function(err, project){
+      console.log("project: ",project);
+      console.log("category: ",category);
+      console.log("projectStyle: ",projectStyle);
+      res.json({
+        success: true,
+        project: project, 
+        category: category, 
+        projectStyle:projectStyle, 
+        list: 'show'})
+    })
+  }
 });
 
 /* Hitting up Wish List api */
