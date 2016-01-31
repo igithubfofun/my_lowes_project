@@ -24,13 +24,26 @@ $(function(){
 		    	document.getElementById('projectDiv').style.display = 'inline';
 		    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
 		  		for(j=0;j<data['project'].length;j++) { 
-		      var listAppend ="<h3 style='text-align:center'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
+		      var listAppend ="<h3 style='text-align:center' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
 		        for(i=0;i<data['project'][j].album.length;i++) {
-		        	listAppend +='<li><div id="projectImgContainer"><img id="projectImg" src="data:image/jpeg;base64,'+data['project'][j].album[i][0]+'"></div></li>';
+		        	var m = j.toString();
+		        	var n = i.toString();
+		        	listAppend +='<li id="project'+(m+n)+'"><div id="projectImgContainer"><img id="projectImg" src="data:image/jpeg;base64,'+data['project'][j].album[i][0]+'"></div></li>';
 		        }
 		        listAppend += "</ul>";
 		        $("#listForLoop").append(listAppend);
-					}	 
+					}
+					$(".projectName").on("click", function(){
+						var projectNumber = $(this).attr('title');
+						console.log("projectNumber: ",projectNumber);
+						for(i=0;i<data['project'][projectNumber].album.length;i++) {
+							var appendId = "#project"+projectNumber+i;
+							console.log("appendId: ",appendId);
+							$(appendId).prepend("<div class='listStep'>"+data['project'][projectNumber].album[i][2]+"</div>");
+							$(appendId).append("<div class='listComMat'>"+data['project'][projectNumber].album[i][1]+"</div>");
+							// $(appendId).append("<div class='listComMat'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
+						}
+					});
 		    }
 	  	});
     } else {
@@ -60,13 +73,26 @@ $(function(){
 	    	document.getElementById('projectDiv').style.display = 'inline';
 	    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
 	  		for(j=0;j<data['project'].length;j++) { 
-	      var listAppend ="<h3 style='text-align:center'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
+	      var listAppend ="<h3 style='text-align:center' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
         for(i=0;i<data['project'][j].album.length;i++) {
-        	listAppend +='<li><div id="projectImgContainer"><img id="projectImg" src="data:image/jpeg;base64,'+data['project'][j].album[i][0]+'"></div></li>';
+        	var m = j.toString();
+		      var n = i.toString();
+        	listAppend +='<li id="project'+(m+n)+'"><div id="projectImgContainer"><img id="projectImg" src="data:image/jpeg;base64,'+data['project'][j].album[i][0]+'"></div></li>';
         }
         listAppend +="</ul>";
         $("#listForLoop").append(listAppend);
-				} 
+				}
+				$(".projectName").on("click", function(){
+					var projectNumber = $(this).attr('title');
+					console.log("projectNumber: ",projectNumber);
+					for(i=0;i<data['project'][projectNumber].album.length;i++) {
+						var appendId = "#project"+projectNumber+i;
+						console.log("appendId: ",appendId);
+						$(appendId).prepend("<div class='listStep'>"+data['project'][projectNumber].album[i][2]+"</div>");
+						$(appendId).append("<div class='listComMat'>"+data['project'][projectNumber].album[i][1]+"</div>");
+						// $(appendId).append("<div class='listComMat'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
+					}
+				}); 
 	    }
   	});
 	});

@@ -24,6 +24,16 @@ img.img-rounded {
   height: auto;
 }
 
+.listStep {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.listComMat {
+  font-size: 16px;
+}
+
 #head {
   background-color: #084b8e;
   border: 1px solid #084b8e;

@@ -145,11 +145,13 @@ router.post('/new_project', upload.array('img'), function(req, res, next){
     var b = fs.readFileSync(req.files[i]['path'])
     imgData = b.toString('base64');
     var bodyComment = 'comment'+i;
+    var bodyMaterials = 'matererials'+i;
     var comment = req.body[bodyComment];
+    var materials = req.body[bodyMaterials];
     console.log("part of imgData: ",imgData.substring(1,20))
     var bodyStep = 'step'+i;
     var step = req.body[bodyStep];
-    album.push([imgData, comment, step]);
+    album.push([imgData, comment, step, materials]);
   }
   var new_project = new Project({
     userId: userId,
