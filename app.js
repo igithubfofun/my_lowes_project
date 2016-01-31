@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Mongoose connection
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_DB_CONN_MY_LOWES_PROJECT);
+mongoose.connect(process.env.MONGOLAB_URI2);
 
 app.use('/', routes);
 app.use('/users', users);
