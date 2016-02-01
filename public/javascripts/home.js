@@ -3,7 +3,10 @@ $(function(){
 // then unhide the div and pass proper project data on server side
 	var firstChoice = "";
 	var secondChoice = "";
+	$(".category_choice").css("pointer-events", "auto");
 	$(".category_choice").on("click", function(){
+		document.getElementById('loadingGif').style.display = 'inline';
+		$(".category_choice").css("pointer-events", "none");
 		firstChoice = $(this).attr('alt');
 		if (firstChoice==="all") {
 			secondChoice="all";
@@ -21,10 +24,12 @@ $(function(){
 		    	console.log('Successful ajax call for sorting');
 		    	console.log('Data: ',data);
 		    	console.log('Project: ', data['project']);
+		    	document.getElementById('loadingGif').style.display = 'none';
 		    	document.getElementById('projectDiv').style.display = 'inline';
+		    	$(".category_choice").css("pointer-events", "auto");
 		    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
 		  		for(j=0;j<data['project'].length;j++) { 
-		      var listAppend ="<h3 style='text-align:center' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
+		      var listAppend ="<div class='projectNameDiv'><h3 style='vertical-align: middle' class='projectName text-center' title='"+j+"'>"+data['project'][j].projectName+"</h3></div><ul style='list-style:none' id='ulForLoop'>";
 		        for(i=0;i<data['project'][j].album.length;i++) {
 		        	var m = j.toString();
 		        	var n = i.toString();
@@ -72,11 +77,15 @@ $(function(){
     } else {
     	document.getElementById('carousel-categories').style.display = 'none';
 			document.getElementById('carousel-styles').style.display = 'inline';
+			$(".style_choice").css("pointer-events", "auto");
+			document.getElementById('loadingGif').style.display = 'none';
 	    console.log('firstChoice: ',firstChoice);
   	}
   });
   $(".style_choice").on("click", function(){
+  	$(".style_choice").css("pointer-events", "none");
   	document.getElementById('carousel-styles').style.display = 'none';
+  	document.getElementById('loadingGif').style.display = 'inline';
   	document.getElementById('carousel-categories').style.display = 'inline';
   	secondChoice = $(this).attr('alt');
   	console.log("SecondChoice: ", secondChoice);
@@ -93,10 +102,12 @@ $(function(){
 	    	console.log('Successful ajax call for sorting');
 	    	console.log('Data: ',data);
 	    	console.log('Project: ', data['project']);
+	    	document.getElementById('loadingGif').style.display = 'none';
+	    	$(".category_choice").css("pointer-events", "auto");
 	    	document.getElementById('projectDiv').style.display = 'inline';
 	    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
 	  		for(j=0;j<data['project'].length;j++) { 
-	      var listAppend ="<h3 style='text-align:center' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3><ul style='list-style:none' id='ulForLoop'>";
+	      var listAppend ="<div class='projectNameDiv'><h3 style='vertical-align: middle' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3></div><ul style='list-style:none' id='ulForLoop'>";
         for(i=0;i<data['project'][j].album.length;i++) {
         	var m = j.toString();
 		      var n = i.toString();

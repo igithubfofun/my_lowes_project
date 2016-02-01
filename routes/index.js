@@ -149,9 +149,17 @@ router.post('/new_project', upload.array('img'), function(req, res, next){
     var b = fs.readFileSync(req.files[i]['path'])
     imgData = b.toString('base64');
     var bodyComment = 'comment'+i;
-    var bodyMaterials = 'matererials'+i;
-    var comment = req.body[bodyComment];
-    var materials = req.body[bodyMaterials];
+    var bodyMaterials = 'materials'+i;
+    if (req.body[bodyComment]) {
+      var comment = req.body[bodyComment];
+    } else {
+      var comment = "No comment";
+    }
+    if (req.body[bodyMaterials]) {
+      var materials = req.body[bodyMaterials];
+    } else {
+      var materials = "No Materials";
+    }
     console.log("part of imgData: ",imgData.substring(1,20))
     var bodyStep = 'step'+i;
     var step = req.body[bodyStep];

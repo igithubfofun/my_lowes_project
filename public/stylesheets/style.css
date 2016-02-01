@@ -18,6 +18,14 @@ img.img-rounded {
   border: 1px solid #3b7ebf;
 }
 
+#loadingGif{
+  position: relative;
+  height: 45px;
+  width: 45px;
+  left: 75px;
+  border-radius: 200px;
+}
+
 .style_choice {
   display: block;
   max-width: 100%;
@@ -28,6 +36,16 @@ img.img-rounded {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+}
+
+.projectNameDiv {
+  color: #084B8E;
+  box-shadow: 3px 2px 0px #084B8E;
+  background-color: #E0E0E0;
+  padding: 0 5px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-bottom: 7px;
 }
 
 .listComMat {
