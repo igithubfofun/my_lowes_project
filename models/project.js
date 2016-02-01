@@ -6,6 +6,7 @@ var projectSchema = new mongoose.Schema({
   projectStyle: { type: String},
   album: { type: Array, required: true },
   category: { type: String, required: true },
+  material: { type: String},
   created_at: Date,
   updated_at: Date
 });

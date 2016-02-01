@@ -42,15 +42,15 @@ $(function(){
 							for(i=0;i<data['project'][projectNumber].album.length;i++) {
 								var stepId = "newListStep"+projectNumber+i;
 								var comId = "newListCom"+projectNumber+i;
-								// var matId = "newListMat"+projectNumber+i;
+								var matId = "newListMat"+projectNumber+i;
 								if (counter[projectNumber]%2==0) {
 								document.getElementById(stepId).style.display = 'none';
 								document.getElementById(comId).style.display = 'none';
-								// document.getElementById(matId).style.display = 'none';
+								document.getElementById(matId).style.display = 'none';
 								} else {
 									document.getElementById(stepId).style.display = 'block';
 									document.getElementById(comId).style.display = 'block';
-									// document.getElementById(matId).style.display = 'block';
+									document.getElementById(matId).style.display = 'block';
 								}
 							}
 						} else {
@@ -63,7 +63,7 @@ $(function(){
 								var matId = "newListMat"+projectNumber+i;
 								$(appendId).prepend("<div class='listStep' id='"+stepId+"'>"+data['project'][projectNumber].album[i][2]+"</div>");
 								$(appendId).append("<div class='listComMat' id='"+comId+"'>"+data['project'][projectNumber].album[i][1]+"</div>");
-								// $(appendId).append("<div class='listComMat' id='"+matId+"'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
+								$(appendId).append("<div class='listComMat' id='"+matId+"'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
 							}
 						}
 					});
@@ -114,15 +114,15 @@ $(function(){
 						for(i=0;i<data['project'][projectNumber].album.length;i++) {
 							var stepId = "newListStep"+projectNumber+i;
 							var comId = "newListCom"+projectNumber+i;
-							// var matId = "newListMat"+projectNumber+i;
+							var matId = "newListMat"+projectNumber+i;
 							if (counter[projectNumber]%2==0) {
 							document.getElementById(stepId).style.display = 'none';
 							document.getElementById(comId).style.display = 'none';
-							// document.getElementById(matId).style.display = 'none';
+							document.getElementById(matId).style.display = 'none';
 							} else {
 								document.getElementById(stepId).style.display = 'block';
 								document.getElementById(comId).style.display = 'block';
-								// document.getElementById(matId).style.display = 'block';
+								document.getElementById(matId).style.display = 'block';
 							}
 						}
 					} else {
@@ -135,7 +135,7 @@ $(function(){
 							var matId = "newListMat"+projectNumber+i;
 							$(appendId).prepend("<div class='listStep' id='"+stepId+"'>"+data['project'][projectNumber].album[i][2]+"</div>");
 							$(appendId).append("<div class='listComMat' id='"+comId+"'>"+data['project'][projectNumber].album[i][1]+"</div>");
-							// $(appendId).append("<div class='listComMat' id='"+matId+"'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
+							$(appendId).append("<div class='listComMat' id='"+matId+"'>Materials Used<p>"+data['project'][projectNumber].album[i][3]+"</p></div>");
 						}
 					}
 				});

@@ -133,7 +133,11 @@ router.get('/my_projects', function(req, res){
 router.post('/new_project', upload.array('img'), function(req, res, next){
   var userId = req.body.userId;
   console.log(userId);
-  var projectName = req.body.projectName;
+  if (req.body.projectName) {
+    var projectName = req.body.projectName;
+  } else {
+    var projectName = "Default Project Name";
+  }
   var category = req.body.category;
   var projectStyle = req.body.projectStyle;
   var numberOfSteps = parseInt(req.body.numberOfSteps);
@@ -164,6 +168,7 @@ router.post('/new_project', upload.array('img'), function(req, res, next){
   new_project.save(function(err) {
         if (err) {
           console.log('Project did not save');
+          console.log(err);
         } else {
           console.log('Project saved successfully');
           res.redirect('/projects_list');
@@ -191,7 +196,7 @@ router.post('/authenticate', function(req, res){
 
       bcrypt.compare(password, user.password, function(err, result) {
         if (!result) {
-          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+          // res.json({ success: false, message: 'Authentication failed. Wrong password.' });
           res.redirect('/login');
         }
         else {
