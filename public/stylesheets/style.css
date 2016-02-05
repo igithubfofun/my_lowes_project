@@ -32,15 +32,30 @@ img.img-rounded {
   height: auto;
 }
 
+#homeFooter, #listForLoop {
+  position: relative;
+  top: -20px;
+  min-height: 350px;
+  background-color: #084B8E;
+}
+
+
 .listStep {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  color: #89cff0;
+}
+
+#listTitle {
+  text-align:center;
+  color:white;
+  font-weight:bold;
 }
 
 .projectNameDiv {
   color: #084B8E;
-  box-shadow: 3px 2px 0px #084B8E;
+  box-shadow: 3px 2px 0px black;
   background-color: #E0E0E0;
   padding: 0 5px;
   display: inline-block;
@@ -50,6 +65,7 @@ img.img-rounded {
 
 .listComMat {
   font-size: 16px;
+  color: beige;
 }
 
 #head {
@@ -73,9 +89,9 @@ img.img-rounded {
   font-weight: 900; 
 }
 #carousel-categories, #carousel-styles {
-  margin-top: -20px;
+  position: relative;
+  top: -20px;
   border-bottom: 1px solid black;
-  ;
 }
 
 .hidden {

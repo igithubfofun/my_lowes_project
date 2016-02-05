@@ -27,7 +27,7 @@ $(function(){
 		    	document.getElementById('loadingGif').style.display = 'none';
 		    	document.getElementById('projectDiv').style.display = 'inline';
 		    	$(".category_choice").css("pointer-events", "auto");
-		    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
+		    	$('#projectDiv').html("<div id='listForLoop' class='container-fluid'><h2 id='listTitle' class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div>");
 		  		for(j=0;j<data['project'].length;j++) { 
 		      var listAppend ="<div class='projectNameDiv'><h3 style='vertical-align: middle' class='projectName text-center' title='"+j+"'>"+data['project'][j].projectName+"</h3></div><ul style='list-style:none' id='ulForLoop'>";
 		        for(i=0;i<data['project'][j].album.length;i++) {
@@ -105,7 +105,7 @@ $(function(){
 	    	document.getElementById('loadingGif').style.display = 'none';
 	    	$(".category_choice").css("pointer-events", "auto");
 	    	document.getElementById('projectDiv').style.display = 'inline';
-	    	$('#projectDiv').html("<div style='height:60px text-align:center'><h2 style='text-align:center'class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div><div id='listForLoop' class='container-fluid'></div>");
+	    	$('#projectDiv').html("<div id='listForLoop' class='container-fluid'><h2 id='listTitle' class='col-xs-12'>"+data['projectStyle']+" "+data['category']+" Projects</h2></div>");
 	  		for(j=0;j<data['project'].length;j++) { 
 	      var listAppend ="<div class='projectNameDiv'><h3 style='vertical-align: middle' class='projectName' title='"+j+"'>"+data['project'][j].projectName+"</h3></div><ul style='list-style:none' id='ulForLoop'>";
         for(i=0;i<data['project'][j].album.length;i++) {
